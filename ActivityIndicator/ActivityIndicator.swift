@@ -40,6 +40,7 @@ public class Spinner: NSObject {
 		let center = CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2)
 		let spinner = UIActivityIndicatorView(activityIndicatorStyle: style)
 		spinner.center = center
+        spinner.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleBottomMargin]
 		spinner.startAnimating()
 		view.addSubview(spinner)
 		return spinner
