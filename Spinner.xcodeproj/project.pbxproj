@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		275BCA2D1C57C50A00FF3647 /* ActivityIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 275BCA2C1C57C50A00FF3647 /* ActivityIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		275BCA341C57C50A00FF3647 /* ActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275BCA291C57C50A00FF3647 /* ActivityIndicator.framework */; };
-		275BCA391C57C50A00FF3647 /* ActivityIndicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275BCA381C57C50A00FF3647 /* ActivityIndicatorTests.swift */; };
-		275BCA441C57C56900FF3647 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275BCA431C57C56900FF3647 /* ActivityIndicator.swift */; };
+		275BCA2D1C57C50A00FF3647 /* Spinner.h in Headers */ = {isa = PBXBuildFile; fileRef = 275BCA2C1C57C50A00FF3647 /* Spinner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		275BCA341C57C50A00FF3647 /* Spinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275BCA291C57C50A00FF3647 /* Spinner.framework */; };
+		275BCA391C57C50A00FF3647 /* SpinnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275BCA381C57C50A00FF3647 /* SpinnerTests.swift */; };
+		275BCA441C57C56900FF3647 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275BCA431C57C56900FF3647 /* Spinner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,13 +24,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		275BCA291C57C50A00FF3647 /* ActivityIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActivityIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		275BCA2C1C57C50A00FF3647 /* ActivityIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityIndicator.h; sourceTree = "<group>"; };
+		275BCA291C57C50A00FF3647 /* Spinner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spinner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		275BCA2C1C57C50A00FF3647 /* Spinner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spinner.h; sourceTree = "<group>"; };
 		275BCA2E1C57C50A00FF3647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		275BCA331C57C50A00FF3647 /* ActivityIndicatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActivityIndicatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		275BCA381C57C50A00FF3647 /* ActivityIndicatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorTests.swift; sourceTree = "<group>"; };
+		275BCA331C57C50A00FF3647 /* Spinner.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Spinner.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		275BCA381C57C50A00FF3647 /* SpinnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerTests.swift; sourceTree = "<group>"; };
 		275BCA3A1C57C50A00FF3647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		275BCA431C57C56900FF3647 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		275BCA431C57C56900FF3647 /* Spinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275BCA341C57C50A00FF3647 /* ActivityIndicator.framework in Frameworks */,
+				275BCA341C57C50A00FF3647 /* Spinner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +55,8 @@
 		275BCA1F1C57C50A00FF3647 = {
 			isa = PBXGroup;
 			children = (
-				275BCA2B1C57C50A00FF3647 /* ActivityIndicator */,
-				275BCA371C57C50A00FF3647 /* ActivityIndicatorTests */,
+				275BCA2B1C57C50A00FF3647 /* Spinner */,
+				275BCA371C57C50A00FF3647 /* SpinnerTests */,
 				275BCA2A1C57C50A00FF3647 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,29 +64,29 @@
 		275BCA2A1C57C50A00FF3647 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				275BCA291C57C50A00FF3647 /* ActivityIndicator.framework */,
-				275BCA331C57C50A00FF3647 /* ActivityIndicatorTests.xctest */,
+				275BCA291C57C50A00FF3647 /* Spinner.framework */,
+				275BCA331C57C50A00FF3647 /* Spinner.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		275BCA2B1C57C50A00FF3647 /* ActivityIndicator */ = {
+		275BCA2B1C57C50A00FF3647 /* Spinner */ = {
 			isa = PBXGroup;
 			children = (
-				275BCA431C57C56900FF3647 /* ActivityIndicator.swift */,
-				275BCA2C1C57C50A00FF3647 /* ActivityIndicator.h */,
+				275BCA431C57C56900FF3647 /* Spinner.swift */,
+				275BCA2C1C57C50A00FF3647 /* Spinner.h */,
 				275BCA2E1C57C50A00FF3647 /* Info.plist */,
 			);
-			path = ActivityIndicator;
+			path = Spinner;
 			sourceTree = "<group>";
 		};
-		275BCA371C57C50A00FF3647 /* ActivityIndicatorTests */ = {
+		275BCA371C57C50A00FF3647 /* SpinnerTests */ = {
 			isa = PBXGroup;
 			children = (
-				275BCA381C57C50A00FF3647 /* ActivityIndicatorTests.swift */,
+				275BCA381C57C50A00FF3647 /* SpinnerTests.swift */,
 				275BCA3A1C57C50A00FF3647 /* Info.plist */,
 			);
-			path = ActivityIndicatorTests;
+			path = SpinnerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,16 +96,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275BCA2D1C57C50A00FF3647 /* ActivityIndicator.h in Headers */,
+				275BCA2D1C57C50A00FF3647 /* Spinner.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		275BCA281C57C50A00FF3647 /* ActivityIndicator */ = {
+		275BCA281C57C50A00FF3647 /* Spinner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 275BCA3D1C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "ActivityIndicator" */;
+			buildConfigurationList = 275BCA3D1C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "Spinner" */;
 			buildPhases = (
 				275BCA241C57C50A00FF3647 /* Sources */,
 				275BCA251C57C50A00FF3647 /* Frameworks */,
@@ -116,14 +116,14 @@
 			);
 			dependencies = (
 			);
-			name = ActivityIndicator;
+			name = Spinner;
 			productName = ActivityIndicator;
-			productReference = 275BCA291C57C50A00FF3647 /* ActivityIndicator.framework */;
+			productReference = 275BCA291C57C50A00FF3647 /* Spinner.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		275BCA321C57C50A00FF3647 /* ActivityIndicatorTests */ = {
+		275BCA321C57C50A00FF3647 /* SpinnerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 275BCA401C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "ActivityIndicatorTests" */;
+			buildConfigurationList = 275BCA401C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "SpinnerTests" */;
 			buildPhases = (
 				275BCA2F1C57C50A00FF3647 /* Sources */,
 				275BCA301C57C50A00FF3647 /* Frameworks */,
@@ -134,9 +134,9 @@
 			dependencies = (
 				275BCA361C57C50A00FF3647 /* PBXTargetDependency */,
 			);
-			name = ActivityIndicatorTests;
+			name = SpinnerTests;
 			productName = ActivityIndicatorTests;
-			productReference = 275BCA331C57C50A00FF3647 /* ActivityIndicatorTests.xctest */;
+			productReference = 275BCA331C57C50A00FF3647 /* Spinner.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -157,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 275BCA231C57C50A00FF3647 /* Build configuration list for PBXProject "ActivityIndicator" */;
+			buildConfigurationList = 275BCA231C57C50A00FF3647 /* Build configuration list for PBXProject "Spinner" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -169,8 +169,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				275BCA281C57C50A00FF3647 /* ActivityIndicator */,
-				275BCA321C57C50A00FF3647 /* ActivityIndicatorTests */,
+				275BCA281C57C50A00FF3647 /* Spinner */,
+				275BCA321C57C50A00FF3647 /* SpinnerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -197,7 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275BCA441C57C56900FF3647 /* ActivityIndicator.swift in Sources */,
+				275BCA441C57C56900FF3647 /* Spinner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275BCA391C57C50A00FF3647 /* ActivityIndicatorTests.swift in Sources */,
+				275BCA391C57C50A00FF3647 /* SpinnerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +214,7 @@
 /* Begin PBXTargetDependency section */
 		275BCA361C57C50A00FF3647 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 275BCA281C57C50A00FF3647 /* ActivityIndicator */;
+			target = 275BCA281C57C50A00FF3647 /* Spinner */;
 			targetProxy = 275BCA351C57C50A00FF3647 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -317,11 +317,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ActivityIndicator/Info.plist;
+				INFOPLIST_FILE = Spinner/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.ActivityIndicator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.Spinner;
+				PRODUCT_NAME = Spinner;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -335,11 +335,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ActivityIndicator/Info.plist;
+				INFOPLIST_FILE = Spinner/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.ActivityIndicator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.Spinner;
+				PRODUCT_NAME = Spinner;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -347,27 +347,27 @@
 		275BCA411C57C50A00FF3647 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = ActivityIndicatorTests/Info.plist;
+				INFOPLIST_FILE = SpinnerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.ActivityIndicatorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Spinner;
 			};
 			name = Debug;
 		};
 		275BCA421C57C50A00FF3647 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = ActivityIndicatorTests/Info.plist;
+				INFOPLIST_FILE = SpinnerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.ActivityIndicatorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Spinner;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		275BCA231C57C50A00FF3647 /* Build configuration list for PBXProject "ActivityIndicator" */ = {
+		275BCA231C57C50A00FF3647 /* Build configuration list for PBXProject "Spinner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				275BCA3B1C57C50A00FF3647 /* Debug */,
@@ -376,7 +376,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		275BCA3D1C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "ActivityIndicator" */ = {
+		275BCA3D1C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "Spinner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				275BCA3E1C57C50A00FF3647 /* Debug */,
@@ -385,7 +385,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		275BCA401C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "ActivityIndicatorTests" */ = {
+		275BCA401C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "SpinnerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				275BCA411C57C50A00FF3647 /* Debug */,

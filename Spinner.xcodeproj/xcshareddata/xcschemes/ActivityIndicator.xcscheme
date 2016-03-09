@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "275BCA281C57C50A00FF3647"
-               BuildableName = "ActivityIndicator.framework"
-               BlueprintName = "ActivityIndicator"
-               ReferencedContainer = "container:ActivityIndicator.xcodeproj">
+               BuildableName = "Spinner.framework"
+               BlueprintName = "Spinner"
+               ReferencedContainer = "container:Spinner.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "275BCA321C57C50A00FF3647"
-               BuildableName = "ActivityIndicatorTests.xctest"
-               BlueprintName = "ActivityIndicatorTests"
-               ReferencedContainer = "container:ActivityIndicator.xcodeproj">
+               BuildableName = "Spinner.xctest"
+               BlueprintName = "SpinnerTests"
+               ReferencedContainer = "container:Spinner.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "275BCA281C57C50A00FF3647"
-            BuildableName = "ActivityIndicator.framework"
-            BlueprintName = "ActivityIndicator"
-            ReferencedContainer = "container:ActivityIndicator.xcodeproj">
+            BuildableName = "Spinner.framework"
+            BlueprintName = "Spinner"
+            ReferencedContainer = "container:Spinner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "275BCA281C57C50A00FF3647"
-            BuildableName = "ActivityIndicator.framework"
-            BlueprintName = "ActivityIndicator"
-            ReferencedContainer = "container:ActivityIndicator.xcodeproj">
+            BuildableName = "Spinner.framework"
+            BlueprintName = "Spinner"
+            ReferencedContainer = "container:Spinner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "275BCA281C57C50A00FF3647"
-            BuildableName = "ActivityIndicator.framework"
-            BlueprintName = "ActivityIndicator"
-            ReferencedContainer = "container:ActivityIndicator.xcodeproj">
+            BuildableName = "Spinner.framework"
+            BlueprintName = "Spinner"
+            ReferencedContainer = "container:Spinner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

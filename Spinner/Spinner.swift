@@ -1,5 +1,5 @@
 //
-//  ActivityIndicator.swift
+//  Spinner.swift
 //  TestProject
 //
 //  Created by Chris Combs on 25/01/16.
@@ -9,21 +9,21 @@
 import UIKit
 
 /** 
-	Protocol for any view that can be used as an Activity Indicator. Currently only has one dismiss
+	Protocol for any view that can be used as a Spinner. Currently only has one dismiss
 	method, because the 'showInView' methods need to be custom for each class
 */
 
-public protocol ActivityIndicator {
+public protocol Spinner {
 	/**
-		Dismiss the ActivityIndicator. Implementations should remove
+		Dismiss the Spinner. Implementations should remove
 		any views from their superview and restore UIButton.titleLabel.alpha
 		to 1, if applicable
 	*/
 	func dismiss()
 }
 
-/// An Activity Indicator view, named as such because ActivityIndicatorView is a pain to type
-public class Spinner: NSObject {
+/// A Spinner view, named as such because SpinnerView is a pain to type
+public class SpinnerView: NSObject {
 	
 	//TODO: Add an option to offset the indicator in the view or button
 	
@@ -34,9 +34,9 @@ public class Spinner: NSObject {
 			- view: The view to display the indicator in
 			- style: A constant that specifies the style of the object to be created
 		
-		- Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
+		- Returns: A reference to the Spinner that was created, so that it can be dismissed as needed
 	*/
-	public static func showSpinnerInView(view: UIView, style: UIActivityIndicatorViewStyle = .White) -> ActivityIndicator {
+	public static func showSpinnerInView(view: UIView, style: UIActivityIndicatorViewStyle = .White) -> Spinner {
 		let center = CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2)
 		let spinner = UIActivityIndicatorView(activityIndicatorStyle: style)
 		spinner.center = center
@@ -53,16 +53,16 @@ public class Spinner: NSObject {
 			- button: The button to display the indicator in
 			- style: A constant that specifies the style of the object to be created
 	
-		- Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
+		- Returns: A reference to the Spinner that was created, so that it can be dismissed as needed
 	*/
-	public static func showSpinnerInButton(button: UIButton, style: UIActivityIndicatorViewStyle = .White) -> ActivityIndicator {
+	public static func showSpinnerInButton(button: UIButton, style: UIActivityIndicatorViewStyle = .White) -> Spinner {
 		button.titleLabel?.alpha = 0.0
 		return showSpinnerInView(button, style: style)
 	}
 }
 
-/// Extension of Spinner that supports an animated UIImageView as a custom activity indicator
-public extension Spinner {
+/// Extension of SpinnerView that supports an animated UIImageView as a custom activity indicator
+public extension SpinnerView {
 	
 	/**
 		Used to create the custom indicator. Call this once (on app open, for example) and it
@@ -96,7 +96,7 @@ public extension Spinner {
 	
 		- Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
 	*/
-	public static func showCustomSpinnerInView(view: UIView) -> ActivityIndicator {
+	public static func showCustomSpinnerInView(view: UIView) -> Spinner {
 		if let image = animationImage {
 			let spinner = UIImageView(frame: view.bounds)
 			spinner.contentMode = .Center
@@ -119,14 +119,14 @@ public extension Spinner {
 	
 		- Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
 	*/
-	public static func showCustomSpinnerInButton(button: UIButton) -> ActivityIndicator {
+	public static func showCustomSpinnerInButton(button: UIButton) -> Spinner {
 		button.titleLabel?.alpha = 0.0
 		return showCustomSpinnerInView(button)
 	}
 }
 
 /// Extension to allow UIActivityIndicatorView to be dismissed
-extension UIActivityIndicatorView: ActivityIndicator {
+extension UIActivityIndicatorView: Spinner {
 	
 	/// Called when the activity indicator should be removed. If shown on a button, it restores the titleLabel
 	public func dismiss() {
@@ -139,7 +139,7 @@ extension UIActivityIndicatorView: ActivityIndicator {
 }
 
 /// Extension to allow UIImageView to be dismissed
-extension UIImageView: ActivityIndicator {
+extension UIImageView: Spinner {
 	/// Called when the activity indicator should be removed. If shown on a button, it restores the titleLabel
 	public func dismiss() {
 		stopAnimating()

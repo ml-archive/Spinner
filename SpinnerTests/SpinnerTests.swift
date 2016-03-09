@@ -1,15 +1,15 @@
 //
-//  ActivityIndicatorTests.swift
-//  ActivityIndicatorTests
+//  SpinnerTests.swift
+//  SpinnerTests
 //
 //  Created by Chris Combs on 26/01/16.
 //  Copyright © 2016 Nodes. All rights reserved.
 //
 
 import XCTest
-@testable import ActivityIndicator
+@testable import Spinner
 
-class ActivityIndicatorTests: XCTestCase {
+class SpinnerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
