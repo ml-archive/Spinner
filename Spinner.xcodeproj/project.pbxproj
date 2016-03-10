@@ -349,7 +349,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = SpinnerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.ActivityIndicatorTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.SpinnerTests;
 				PRODUCT_NAME = Spinner;
 			};
 			name = Debug;
@@ -359,7 +359,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = SpinnerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.ActivityIndicatorTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.SpinnerTests;
 				PRODUCT_NAME = Spinner;
 			};
 			name = Release;
