@@ -32,44 +32,47 @@ public class SpinnerView: NSObject, Spinner {
 
     /**
      To display the indicator centered in a view.
-
+     
      - Parameter view: The view to display the indicator in.
      - Parameter style: A constant that specifies the style of the object to be created.
-
+     - Parameter color: A UIColor that specifies the tint of the spinner
+     
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    public static func showSpinnerInView(view: UIView, style: UIActivityIndicatorViewStyle = .White) -> Spinner {
+    public static func showSpinnerInView(view: UIView, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil) -> Spinner {
         let center      = CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2)
         let spinner     = UIActivityIndicatorView(activityIndicatorStyle: style)
-
+        
+        spinner.color = color
         spinner.center = center
         spinner.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleBottomMargin]
-
+        
         spinner.startAnimating()
         view.addSubview(spinner)
-
+        
         let view = SpinnerView()
         view.spinner = spinner
         return view
     }
-
+    
     /**
      To display the indicator centered in a button.
      The button's titleLabel colors will be set to clear color while the indicator is shown.
-
+     
      - Parameter button: The button to display the indicator in.
      - Parameter style: A constant that specifies the style of the object to be created.
-
+     - Parameter color: A UIColor that specifies the tint of the spinner
+     
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    public static func showSpinnerInButton(button: UIButton, style: UIActivityIndicatorViewStyle = .White) -> Spinner {
-        let view = showSpinnerInView(button, style: style)
-
+    public static func showSpinnerInButton(button: UIButton, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil) -> Spinner {
+        let view = showSpinnerInView(button, style: style, color: color)
+        
         if let spinnerView = view as? SpinnerView {
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
         }
-
+        
         return view
     }
 
