@@ -67,7 +67,7 @@ public class SpinnerView: NSObject, Spinner {
      */
     public static func showSpinnerInButton(button: UIButton, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil) -> Spinner {
         let view = showSpinnerInView(button, style: style, color: color)
-        
+        button.userInteractionEnabled = false
         if let spinnerView = view as? SpinnerView {
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
@@ -78,6 +78,7 @@ public class SpinnerView: NSObject, Spinner {
 
     public func dismiss() {
         if let button = spinner?.superview as? UIButton {
+            button.userInteractionEnabled = true
             button.restoreTitleColors(controlTitleColors)
         }
         spinner?.dismiss()
