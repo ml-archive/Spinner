@@ -65,9 +65,9 @@ public class SpinnerView: NSObject, Spinner {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    public static func showSpinnerInButton(button: UIButton, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil) -> Spinner {
+    public static func showSpinnerInButton(button: UIButton, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> Spinner {
         let view = showSpinnerInView(button, style: style, color: color)
-        button.userInteractionEnabled = false
+        button.userInteractionEnabled = !disablesUserInteraction
         if let spinnerView = view as? SpinnerView {
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
@@ -146,9 +146,9 @@ public extension SpinnerView {
 
      - Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
      */
-    public static func showCustomSpinnerInButton(button: UIButton) -> Spinner {
+    public static func showCustomSpinnerInButton(button: UIButton, disablesUserInteraction:Bool = true) -> Spinner {
         let view = showCustomSpinnerInView(button)
-
+        button.userInteractionEnabled = !disablesUserInteraction
         if let spinnerView = view as? SpinnerView {
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
