@@ -38,7 +38,7 @@ public class SpinnerView: NSObject, Spinner {
 
     /**
      To display the indicator centered in a view.
-     
+
      - Parameter view: The view to display the indicator in.
      - Parameter style: A constant that specifies the style of the object to be created.
      - Parameter color: A UIColor that specifies the tint of the spinner
@@ -82,7 +82,7 @@ public class SpinnerView: NSObject, Spinner {
      */
     public static func showSpinnerInButton(_ button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> Spinner {
         let view = showSpinnerInView(button, style: style, color: color)
-        button.userInteractionEnabled = !disablesUserInteraction
+        button.isUserInteractionEnabled = !disablesUserInteraction
         if let spinnerView = view as? SpinnerView {
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
@@ -93,6 +93,8 @@ public class SpinnerView: NSObject, Spinner {
 
     public func dismiss(enablesUserInteraction: Bool = false) {
         if let button = spinner?.superview as? UIButton {
+
+            button.isUserInteractionEnabled = true
             button.restoreTitleColors(controlTitleColors)
             if enablesUserInteraction {
                 button.userInteractionEnabled = true
@@ -169,7 +171,7 @@ public extension SpinnerView {
      */
     public static func showCustomSpinnerInButton(_ button: UIButton, disablesUserInteraction:Bool = true) -> Spinner {
         let view = showCustomSpinnerInView(button)
-        button.userInteractionEnabled = !disablesUserInteraction
+        button.isUserInteractionEnabled = !disablesUserInteraction
         if let spinnerView = view as? SpinnerView {
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
@@ -230,6 +232,6 @@ private extension UIButton {
     }
 
     private func removeAllTitleColors() {
-        restoreTitleColors(allTitleColors().map({ return ($0.0, UIColor.clear()) }))
+        restoreTitleColors(allTitleColors().map({ return ($0.0, UIColor.clear) }))
     }
 }
