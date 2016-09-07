@@ -39,10 +39,15 @@ public class SpinnerView: NSObject, Spinner {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    public static func showSpinnerInView(view: UIView, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil) -> Spinner {
+    public static func showSpinnerInView(view: UIView, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil, disablesUserInteraction: Bool = false) -> Spinner {
         let center      = CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2)
         let spinner     = UIActivityIndicatorView(activityIndicatorStyle: style)
         
+        if disablesUserInteraction {
+            spinner.frame = view.frame
+            spinner.layer.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).CGColor
+            view.userInteractionEnabled = false
+        }
         spinner.color = color
         spinner.center = center
         spinner.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleBottomMargin]
@@ -81,6 +86,10 @@ public class SpinnerView: NSObject, Spinner {
             button.userInteractionEnabled = true
             button.restoreTitleColors(controlTitleColors)
         }
+        if let view = spinner?.superview {
+            view.userInteractionEnabled = true
+        }
+        
         spinner?.dismiss()
         imageView?.dismiss()
     }
