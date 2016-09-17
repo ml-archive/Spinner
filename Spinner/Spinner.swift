@@ -21,20 +21,20 @@ public protocol Spinner {
      
      - Parameter enablesUserInteraction: A boolean that specifies if the user interaction on the view should be enabled when the spinner is dismissed
      */
-    func dismiss(enablesUserInteraction enablesUserInteraction: Bool)
+    func dismiss(enablesUserInteraction: Bool)
 }
 
 public extension Spinner {
-    func dismiss(enablesUserInteraction enablesUserInteraction: Bool = false){}
+    func dismiss(enablesUserInteraction: Bool = false){}
 }
 
 public class SpinnerView: NSObject, Spinner {
 
     //TODO: Add an option to offset the indicator in the view or button
 
-    private var controlTitleColors: [ControlTitleColor]?
-    private var spinner: UIActivityIndicatorView?
-    private var imageView: UIImageView?
+    fileprivate var controlTitleColors: [ControlTitleColor]?
+    fileprivate var spinner: UIActivityIndicatorView?
+    fileprivate var imageView: UIImageView?
 
     /**
      To display the indicator centered in a view.
@@ -48,13 +48,13 @@ public class SpinnerView: NSObject, Spinner {
      */
 
     public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction: Bool = false) -> Spinner {
-        let center      = CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2)
+        let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
 
         let spinner     = UIActivityIndicatorView(activityIndicatorStyle: style)
         
         if disablesUserInteraction {
             spinner.frame = view.frame
-            spinner.layer.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).CGColor
+            spinner.layer.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             view.isUserInteractionEnabled = false
         }
         spinner.color = color
@@ -80,8 +80,8 @@ public class SpinnerView: NSObject, Spinner {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    public static func showSpinnerInButton(_ button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> Spinner {
-        let view = showSpinnerInView(button, style: style, color: color)
+    public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> Spinner {
+        let view = showSpinner(inView: button, style: style, color: color)
         button.isUserInteractionEnabled = !disablesUserInteraction
         if let spinnerView = view as? SpinnerView {
             spinnerView.controlTitleColors = button.allTitleColors()
@@ -95,13 +95,13 @@ public class SpinnerView: NSObject, Spinner {
         if let button = spinner?.superview as? UIButton {
 
             button.isUserInteractionEnabled = true
-            button.restoreTitleColors(controlTitleColors)
+            button.restore(titleColors: controlTitleColors)
             if enablesUserInteraction {
-                button.userInteractionEnabled = true
+                button.isUserInteractionEnabled = true
             }
         }
-        if let view = spinner?.superview where enablesUserInteraction == true {
-            view.userInteractionEnabled = true
+        if let view = spinner?.superview, enablesUserInteraction == true {
+            view.isUserInteractionEnabled = true
         }
         
         spinner?.dismiss()
@@ -125,7 +125,7 @@ public extension SpinnerView {
      - Parameter images: An array containing the UIImages to use for the animation.
      - Parameter duration: The animation duration.
      */
-    public static func setCustomImages(_ images: [UIImage], duration: TimeInterval) {
+    public static func set(customImages images: [UIImage], duration: TimeInterval) {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: images[0].size.width, height: images[0].size.height))
         image.animationImages = images
         image.animationDuration = duration
@@ -143,7 +143,7 @@ public extension SpinnerView {
 
      - Returns: A reference to the `Spinner` that was created, so that it can be dismissed as needed.
      */
-    public static func showCustomSpinnerInView(_ view: UIView) -> Spinner {
+    public static func showCustomSpinner(inView view: UIView) -> Spinner {
         if let image = animationImage {
             let imageView = UIImageView(frame: view.bounds)
             imageView.contentMode = .center
@@ -157,7 +157,7 @@ public extension SpinnerView {
             return spinnerView
         }
         else {
-            return showSpinnerInView(view)
+            return showSpinner(inView: view)
         }
     }
 
@@ -169,8 +169,8 @@ public extension SpinnerView {
 
      - Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
      */
-    public static func showCustomSpinnerInButton(_ button: UIButton, disablesUserInteraction:Bool = true) -> Spinner {
-        let view = showCustomSpinnerInView(button)
+    public static func showCustomSpinner(inButton button: UIButton, disablesUserInteraction:Bool = true) -> Spinner {
+        let view = showCustomSpinner(inView: button)
         button.isUserInteractionEnabled = !disablesUserInteraction
         if let spinnerView = view as? SpinnerView {
             spinnerView.controlTitleColors = button.allTitleColors()
@@ -187,7 +187,7 @@ public extension SpinnerView {
 extension UIActivityIndicatorView: Spinner {
 
     // Called when the activity indicator should be removed.
-    public func dismiss(enablesUserInteraction enablesUserInteraction: Bool = false) {
+    public func dismiss(enablesUserInteraction: Bool = false) {
         stopAnimating()
         removeFromSuperview()
     }
@@ -197,7 +197,7 @@ extension UIActivityIndicatorView: Spinner {
 extension UIImageView: Spinner {
 
     // Called when the activity indicator should be removed.
-    public func dismiss(enablesUserInteraction enablesUserInteraction: Bool = false) {
+    public func dismiss(enablesUserInteraction: Bool = false) {
         stopAnimating()
         removeFromSuperview()
     }
@@ -205,9 +205,9 @@ extension UIImageView: Spinner {
 
 // MARK: - Private -
 
-private extension UIButton {
+fileprivate extension UIButton {
 
-    private func allTitleColors() -> [ControlTitleColor] {
+    fileprivate func allTitleColors() -> [ControlTitleColor] {
         var colors: [ControlTitleColor] = [
             (UIControlState(), titleColor(for: UIControlState())),
             (.highlighted, titleColor(for: .highlighted)),
@@ -224,14 +224,14 @@ private extension UIButton {
         return colors
     }
 
-    private func restoreTitleColors(_ colors: [ControlTitleColor]?) {
+    fileprivate func restore(titleColors colors: [ControlTitleColor]?) {
         guard let colors = colors else { return }
         for color in colors {
             setTitleColor(color.1, for: color.0)
         }
     }
 
-    private func removeAllTitleColors() {
-        restoreTitleColors(allTitleColors().map({ return ($0.0, UIColor.clear) }))
+    fileprivate func removeAllTitleColors() {
+        restore(titleColors: allTitleColors().map({ return ($0.0, UIColor.clear) }))
     }
 }
