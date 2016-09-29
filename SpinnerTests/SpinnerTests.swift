@@ -36,7 +36,7 @@ class SpinnerTests: XCTestCase {
         let spinner = SpinnerView.showSpinner(inButton: button)
         spinner.dismiss()
         let hasSpinner = button.subviews.contains {$0 is Spinner}
-        XCTAssert(!hasSpinner)
+        XCTAssertFalse(hasSpinner)
     }
 
     
@@ -51,7 +51,7 @@ class SpinnerTests: XCTestCase {
         let spinner = SpinnerView.showSpinner(inView: view)
         spinner.dismiss()
         let hasSpinner = view.subviews.contains {$0 is Spinner}
-        XCTAssert(!hasSpinner)
+        XCTAssertFalse(hasSpinner)
     }
     
     func testShowCustomSpinnerInView() {
@@ -65,7 +65,7 @@ class SpinnerTests: XCTestCase {
         let spinner = SpinnerView.showCustomSpinner(inView: view)
         spinner.dismiss()
          let hasSpinner = view.subviews.contains {$0 is Spinner}
-        XCTAssert(!hasSpinner)
+        XCTAssertFalse(hasSpinner)
     }
     
 }
