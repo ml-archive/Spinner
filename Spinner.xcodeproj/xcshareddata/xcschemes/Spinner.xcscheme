@@ -32,8 +32,8 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "275BCA321C57C50A00FF3647"
-               BuildableName = "Spinner.xctest"
+               BlueprintIdentifier = "BD9ABA611D9D4A740013E462"
+               BuildableName = "SpinnerTests.xctest"
                BlueprintName = "SpinnerTests"
                ReferencedContainer = "container:Spinner.xcodeproj">
             </BuildableReference>

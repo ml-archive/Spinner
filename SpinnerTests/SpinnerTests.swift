@@ -2,17 +2,22 @@
 //  SpinnerTests.swift
 //  SpinnerTests
 //
-//  Created by Chris Combs on 26/01/16.
+//  Created by Jakob Mygind on 29/09/16.
 //  Copyright © 2016 Nodes. All rights reserved.
 //
 
 import XCTest
+@testable import Spinner
 
 class SpinnerTests: XCTestCase {
     
+    var view = UIView()
+    var button = UIButton()
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        view = UIView()
+        button = UIButton()
     }
     
     override func tearDown() {
@@ -20,16 +25,47 @@ class SpinnerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testShowSpinnerInButton() {
+        
+        _ = SpinnerView.showSpinner(inView: view)
+        let hasSpinner = view.subviews.contains {$0 is Spinner}
+        XCTAssert(hasSpinner)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testDismissSpinnerInButton() {
+        let spinner = SpinnerView.showSpinner(inView: view)
+        spinner.dismiss()
+        let hasSpinner = view.subviews.contains {$0 is Spinner}
+        XCTAssert(!hasSpinner)
+    }
+
+    
+    func testShowSpinnerInView() {
+        
+        _ = SpinnerView.showSpinner(inView: view)
+        let hasSpinner = view.subviews.contains {$0 is Spinner}
+        XCTAssert(hasSpinner)
+    }
+    
+    func testDismissSpinnerInView() {
+        let spinner = SpinnerView.showSpinner(inView: view)
+        spinner.dismiss()
+        let hasSpinner = view.subviews.contains {$0 is Spinner}
+        XCTAssert(!hasSpinner)
+    }
+    
+    func testShowCustomSpinnerInView() {
+        
+        _ = SpinnerView.showCustomSpinner(inView: view)
+         let hasSpinner = view.subviews.contains {$0 is Spinner}
+        XCTAssert(hasSpinner)
+    }
+    
+    func testDismissCustomSpinnerInView() {
+        let spinner = SpinnerView.showCustomSpinner(inView: view)
+        spinner.dismiss()
+         let hasSpinner = view.subviews.contains {$0 is Spinner}
+        XCTAssert(!hasSpinner)
     }
     
 }

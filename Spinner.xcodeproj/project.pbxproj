@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		275BCA2D1C57C50A00FF3647 /* Spinner.h in Headers */ = {isa = PBXBuildFile; fileRef = 275BCA2C1C57C50A00FF3647 /* Spinner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		275BCA341C57C50A00FF3647 /* Spinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275BCA291C57C50A00FF3647 /* Spinner.framework */; };
-		275BCA391C57C50A00FF3647 /* SpinnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275BCA381C57C50A00FF3647 /* SpinnerTests.swift */; };
 		275BCA441C57C56900FF3647 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275BCA431C57C56900FF3647 /* Spinner.swift */; };
+		BD9ABA651D9D4A740013E462 /* SpinnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ABA641D9D4A740013E462 /* SpinnerTests.swift */; };
+		BD9ABA671D9D4A740013E462 /* Spinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275BCA291C57C50A00FF3647 /* Spinner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		275BCA351C57C50A00FF3647 /* PBXContainerItemProxy */ = {
+		BD9ABA681D9D4A740013E462 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 275BCA201C57C50A00FF3647 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 275BCA281C57C50A00FF3647;
-			remoteInfo = ActivityIndicator;
+			remoteInfo = Spinner;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -27,10 +27,10 @@
 		275BCA291C57C50A00FF3647 /* Spinner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spinner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275BCA2C1C57C50A00FF3647 /* Spinner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spinner.h; sourceTree = "<group>"; };
 		275BCA2E1C57C50A00FF3647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		275BCA331C57C50A00FF3647 /* Spinner.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Spinner.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		275BCA381C57C50A00FF3647 /* SpinnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerTests.swift; sourceTree = "<group>"; };
-		275BCA3A1C57C50A00FF3647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		275BCA431C57C56900FF3647 /* Spinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		BD9ABA621D9D4A740013E462 /* SpinnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpinnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD9ABA641D9D4A740013E462 /* SpinnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerTests.swift; sourceTree = "<group>"; };
+		BD9ABA661D9D4A740013E462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,11 +41,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		275BCA301C57C50A00FF3647 /* Frameworks */ = {
+		BD9ABA5F1D9D4A740013E462 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275BCA341C57C50A00FF3647 /* Spinner.framework in Frameworks */,
+				BD9ABA671D9D4A740013E462 /* Spinner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				275BCA2B1C57C50A00FF3647 /* Spinner */,
-				275BCA371C57C50A00FF3647 /* SpinnerTests */,
+				BD9ABA631D9D4A740013E462 /* SpinnerTests */,
 				275BCA2A1C57C50A00FF3647 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				275BCA291C57C50A00FF3647 /* Spinner.framework */,
-				275BCA331C57C50A00FF3647 /* Spinner.xctest */,
+				BD9ABA621D9D4A740013E462 /* SpinnerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,11 +80,11 @@
 			path = Spinner;
 			sourceTree = "<group>";
 		};
-		275BCA371C57C50A00FF3647 /* SpinnerTests */ = {
+		BD9ABA631D9D4A740013E462 /* SpinnerTests */ = {
 			isa = PBXGroup;
 			children = (
-				275BCA381C57C50A00FF3647 /* SpinnerTests.swift */,
-				275BCA3A1C57C50A00FF3647 /* Info.plist */,
+				BD9ABA641D9D4A740013E462 /* SpinnerTests.swift */,
+				BD9ABA661D9D4A740013E462 /* Info.plist */,
 			);
 			path = SpinnerTests;
 			sourceTree = "<group>";
@@ -121,22 +121,22 @@
 			productReference = 275BCA291C57C50A00FF3647 /* Spinner.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		275BCA321C57C50A00FF3647 /* SpinnerTests */ = {
+		BD9ABA611D9D4A740013E462 /* SpinnerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 275BCA401C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "SpinnerTests" */;
+			buildConfigurationList = BD9ABA6A1D9D4A740013E462 /* Build configuration list for PBXNativeTarget "SpinnerTests" */;
 			buildPhases = (
-				275BCA2F1C57C50A00FF3647 /* Sources */,
-				275BCA301C57C50A00FF3647 /* Frameworks */,
-				275BCA311C57C50A00FF3647 /* Resources */,
+				BD9ABA5E1D9D4A740013E462 /* Sources */,
+				BD9ABA5F1D9D4A740013E462 /* Frameworks */,
+				BD9ABA601D9D4A740013E462 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				275BCA361C57C50A00FF3647 /* PBXTargetDependency */,
+				BD9ABA691D9D4A740013E462 /* PBXTargetDependency */,
 			);
 			name = SpinnerTests;
-			productName = ActivityIndicatorTests;
-			productReference = 275BCA331C57C50A00FF3647 /* Spinner.xctest */;
+			productName = SpinnerTests;
+			productReference = BD9ABA621D9D4A740013E462 /* SpinnerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -145,7 +145,7 @@
 		275BCA201C57C50A00FF3647 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Nodes;
 				TargetAttributes = {
@@ -153,9 +153,10 @@
 						CreatedOnToolsVersion = 7.2;
 						LastSwiftMigration = 0800;
 					};
-					275BCA321C57C50A00FF3647 = {
-						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0800;
+					BD9ABA611D9D4A740013E462 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = M92A6H7EPZ;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -172,7 +173,7 @@
 			projectRoot = "";
 			targets = (
 				275BCA281C57C50A00FF3647 /* Spinner */,
-				275BCA321C57C50A00FF3647 /* SpinnerTests */,
+				BD9ABA611D9D4A740013E462 /* SpinnerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -185,7 +186,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		275BCA311C57C50A00FF3647 /* Resources */ = {
+		BD9ABA601D9D4A740013E462 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -203,21 +204,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		275BCA2F1C57C50A00FF3647 /* Sources */ = {
+		BD9ABA5E1D9D4A740013E462 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275BCA391C57C50A00FF3647 /* SpinnerTests.swift in Sources */,
+				BD9ABA651D9D4A740013E462 /* SpinnerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		275BCA361C57C50A00FF3647 /* PBXTargetDependency */ = {
+		BD9ABA691D9D4A740013E462 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 275BCA281C57C50A00FF3647 /* Spinner */;
-			targetProxy = 275BCA351C57C50A00FF3647 /* PBXContainerItemProxy */;
+			targetProxy = BD9ABA681D9D4A740013E462 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -349,24 +350,37 @@
 			};
 			name = Release;
 		};
-		275BCA411C57C50A00FF3647 /* Debug */ = {
+		BD9ABA6B1D9D4A740013E462 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = M92A6H7EPZ;
 				INFOPLIST_FILE = SpinnerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.SpinnerTests;
-				PRODUCT_NAME = Spinner;
+				PRODUCT_BUNDLE_IDENTIFIER = dk.nodes.SpinnerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		275BCA421C57C50A00FF3647 /* Release */ = {
+		BD9ABA6C1D9D4A740013E462 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = M92A6H7EPZ;
 				INFOPLIST_FILE = SpinnerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.SpinnerTests;
-				PRODUCT_NAME = Spinner;
+				PRODUCT_BUNDLE_IDENTIFIER = dk.nodes.SpinnerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
@@ -393,14 +407,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		275BCA401C57C50A00FF3647 /* Build configuration list for PBXNativeTarget "SpinnerTests" */ = {
+		BD9ABA6A1D9D4A740013E462 /* Build configuration list for PBXNativeTarget "SpinnerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				275BCA411C57C50A00FF3647 /* Debug */,
-				275BCA421C57C50A00FF3647 /* Release */,
+				BD9ABA6B1D9D4A740013E462 /* Debug */,
+				BD9ABA6C1D9D4A740013E462 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
