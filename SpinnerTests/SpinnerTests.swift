@@ -26,46 +26,60 @@ class SpinnerTests: XCTestCase {
     }
     
     func testShowSpinnerInButton() {
-        
+        button.isUserInteractionEnabled = true
         _ = SpinnerView.showSpinner(inButton: button)
         let hasSpinner = button.subviews.contains {$0 is Spinner}
-        XCTAssert(hasSpinner)
+        XCTAssert(hasSpinner && !button.isUserInteractionEnabled)
     }
     
     func testDismissSpinnerInButton() {
         let spinner = SpinnerView.showSpinner(inButton: button)
         spinner.dismiss()
         let hasSpinner = button.subviews.contains {$0 is Spinner}
-        XCTAssertFalse(hasSpinner)
+        XCTAssertFalse(hasSpinner && button.isUserInteractionEnabled)
+    }
+    
+    func testShowSpinnerInDisabledButton() {
+        button.isUserInteractionEnabled = false
+        _ = SpinnerView.showSpinner(inButton: button)
+        let hasSpinner = button.subviews.contains {$0 is Spinner}
+        XCTAssert(hasSpinner && !button.isUserInteractionEnabled)
+    }
+    
+    func testDismissSpinnerInDisabledButton() {
+        button.isUserInteractionEnabled = false
+        let spinner = SpinnerView.showSpinner(inButton: button)
+        spinner.dismiss()
+        let hasSpinner = button.subviews.contains {$0 is Spinner}
+        XCTAssertFalse(hasSpinner && !button.isUserInteractionEnabled)
     }
 
-    
     func testShowSpinnerInView() {
-        
+        view.isUserInteractionEnabled = true
         _ = SpinnerView.showSpinner(inView: view)
         let hasSpinner = view.subviews.contains {$0 is Spinner}
-        XCTAssert(hasSpinner)
+        XCTAssert(hasSpinner && !view.isUserInteractionEnabled)
     }
     
     func testDismissSpinnerInView() {
         let spinner = SpinnerView.showSpinner(inView: view)
         spinner.dismiss()
         let hasSpinner = view.subviews.contains {$0 is Spinner}
-        XCTAssertFalse(hasSpinner)
+        XCTAssertFalse(hasSpinner && view.isUserInteractionEnabled)
     }
     
     func testShowCustomSpinnerInView() {
-        
+         view.isUserInteractionEnabled = true
         _ = SpinnerView.showCustomSpinner(inView: view)
          let hasSpinner = view.subviews.contains {$0 is Spinner}
-        XCTAssert(hasSpinner)
+        XCTAssert(hasSpinner && !view.isUserInteractionEnabled)
     }
     
     func testDismissCustomSpinnerInView() {
         let spinner = SpinnerView.showCustomSpinner(inView: view)
         spinner.dismiss()
          let hasSpinner = view.subviews.contains {$0 is Spinner}
-        XCTAssertFalse(hasSpinner)
+        XCTAssertFalse(hasSpinner && view.isUserInteractionEnabled)
     }
     
 }

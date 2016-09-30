@@ -21,11 +21,7 @@ public protocol Spinner {
      
      - Parameter enablesUserInteraction: A boolean that specifies if the user interaction on the view should be enabled when the spinner is dismissed
      */
-    func dismiss(enablesUserInteraction: Bool)
-}
-
-public extension Spinner {
-    func dismiss(enablesUserInteraction: Bool = false){}
+    func dismiss()
 }
 
 public class SpinnerView: NSObject, Spinner {
@@ -35,6 +31,7 @@ public class SpinnerView: NSObject, Spinner {
     fileprivate var controlTitleColors: [ControlTitleColor]?
     fileprivate var spinner: UIActivityIndicatorView?
     fileprivate var imageView: UIImageView?
+    fileprivate var userInteractionEnabledAtReception = true
 
     /**
      To display the indicator centered in a view.
@@ -42,15 +39,18 @@ public class SpinnerView: NSObject, Spinner {
      - Parameter view: The view to display the indicator in.
      - Parameter style: A constant that specifies the style of the object to be created.
      - Parameter color: A UIColor that specifies the tint of the spinner
-     - Parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown
+     - Parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown. Default is true
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
 
-    public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction: Bool = false) -> Spinner {
+    public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction: Bool = true) -> Spinner {
         let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
 
         let spinner     = UIActivityIndicatorView(activityIndicatorStyle: style)
+        
+        let spinnerView = SpinnerView()
+        spinnerView.userInteractionEnabledAtReception = view.isUserInteractionEnabled
         
         if disablesUserInteraction {
             spinner.frame = view.frame
@@ -63,10 +63,9 @@ public class SpinnerView: NSObject, Spinner {
         
         spinner.startAnimating()
         view.addSubview(spinner)
+        spinnerView.spinner = spinner
         
-        let view = SpinnerView()
-        view.spinner = spinner
-        return view
+        return spinnerView
     }
     
     /**
@@ -76,34 +75,35 @@ public class SpinnerView: NSObject, Spinner {
      - Parameter button: The button to display the indicator in.
      - Parameter style: A constant that specifies the style of the object to be created.
      - Parameter color: A UIColor that specifies the tint of the spinner
-     - Parameter disablesUserInteraction: A boolean that specifies if the user interaction on the button should be disabled while the spinner is shown
+     - Parameter disablesUserInteraction: A boolean that specifies if the user interaction on the button should be disabled while the spinner is shown. Default is true
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
     public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> Spinner {
+        
         let view = showSpinner(inView: button, style: style, color: color)
-        button.isUserInteractionEnabled = !disablesUserInteraction
+        
         if let spinnerView = view as? SpinnerView {
+            spinnerView.userInteractionEnabledAtReception = button.isUserInteractionEnabled
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
         }
-        
+        if disablesUserInteraction {
+            button.isUserInteractionEnabled = false
+        }
+    
         return view
     }
 
-    public func dismiss(enablesUserInteraction: Bool = false) {
-        if let button = spinner?.superview as? UIButton {
-
-            button.isUserInteractionEnabled = true
-            button.restore(titleColors: controlTitleColors)
-            if enablesUserInteraction {
-                button.isUserInteractionEnabled = true
-            }
-        }
-        if let view = spinner?.superview, enablesUserInteraction == true {
-            view.isUserInteractionEnabled = true
-        }
+    public func dismiss() {
         
+        if let superView = spinner?.superview {
+            superView.isUserInteractionEnabled = self.userInteractionEnabledAtReception
+            if let button = superView as? UIButton {
+                button.restore(titleColors: controlTitleColors)
+            }
+            
+        }
         spinner?.dismiss()
         imageView?.dismiss()
     }
@@ -187,7 +187,7 @@ public extension SpinnerView {
 extension UIActivityIndicatorView: Spinner {
 
     // Called when the activity indicator should be removed.
-    public func dismiss(enablesUserInteraction: Bool = false) {
+    public func dismiss() {
         stopAnimating()
         removeFromSuperview()
     }
@@ -197,7 +197,7 @@ extension UIActivityIndicatorView: Spinner {
 extension UIImageView: Spinner {
 
     // Called when the activity indicator should be removed.
-    public func dismiss(enablesUserInteraction: Bool = false) {
+    public func dismiss() {
         stopAnimating()
         removeFromSuperview()
     }
