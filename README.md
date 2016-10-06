@@ -10,10 +10,6 @@ A helpful loading spinner tool allowing you to present a UIActivityIndicator vie
 github "nodes-ios/Spinner"
 ~~~
 
-### CocoaPods
-~~~
-pod 'Spinner', '~> 1.0'
-~~~ 
 
 ## 🔧 Setup
 Easily present spinners in views like so:
@@ -35,7 +31,7 @@ spinner.dismiss()
 ```
 
 ----
-## Custom Images spinner
+## Custom spinner
 If you would rather use something more custom than the UIActivityIndicator, you can set an array of images to the Spinner with a duration time it takes to animate through them and display it in a view.
 ```swift
 public static func setCustomImages(images: [UIImage], duration: NSTimeInterval)
@@ -50,7 +46,7 @@ You can also display the spinner in buttons, simply add the spinner to any UIBut
 public static func showCustomSpinnerInButton(button: UIButton, disablesUserInteraction:Bool = true) -> Spinner
 ```
 
- Credits
+## Credits
 Made with ❤️ at [Nodes](http://nodesagency.com).
 
 ## 📄 License
