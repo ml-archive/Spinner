@@ -89,6 +89,13 @@ public class SpinnerView: NSObject, Spinner {
         return view
     }
 
+    /**
+     To dismiss the currently displayed indicator.
+     The views interaction will then be enabled depending on the parameter boolean
+     If shown in a button the titles text will become visible
+     
+     - Parameter enablesUserInteraction: A boolean that specifies if the user interaction on the view should be enabled when the spinner is dismissed
+     */
     public func dismiss(enablesUserInteraction: Bool = false) {
         if let button = spinner?.superview as? UIButton {
             button.restoreTitleColors(controlTitleColors)
@@ -203,6 +210,7 @@ extension UIImageView: Spinner {
 
 private extension UIButton {
 
+    // Extension to return an array of every color for every button state
     private func allTitleColors() -> [ControlTitleColor] {
         var colors: [ControlTitleColor] = [
             (.Normal, titleColorForState(.Normal)),
@@ -220,6 +228,11 @@ private extension UIButton {
         return colors
     }
 
+    /**
+     Function to set the buttons title colors to specific button states passed in the array parameter
+     
+     - Parameter colors: An array of ControlTitleColor each containing a UIControlState and a UIColor
+     */
     private func restoreTitleColors(colors: [ControlTitleColor]?) {
         guard let colors = colors else { return }
         for color in colors {
@@ -227,6 +240,9 @@ private extension UIButton {
         }
     }
 
+    /**
+     Sets all the the buttons title colors to clear
+     */
     private func removeAllTitleColors() {
         restoreTitleColors(allTitleColors().map({ return ($0.0, UIColor.clearColor()) }))
     }
