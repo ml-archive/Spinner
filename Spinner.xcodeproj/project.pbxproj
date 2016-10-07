@@ -27,7 +27,7 @@
 		275BCA291C57C50A00FF3647 /* Spinner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spinner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275BCA2C1C57C50A00FF3647 /* Spinner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spinner.h; sourceTree = "<group>"; };
 		275BCA2E1C57C50A00FF3647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		275BCA331C57C50A00FF3647 /* Spinner.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Spinner.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		275BCA331C57C50A00FF3647 /* SpinnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpinnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		275BCA381C57C50A00FF3647 /* SpinnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerTests.swift; sourceTree = "<group>"; };
 		275BCA3A1C57C50A00FF3647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		275BCA431C57C56900FF3647 /* Spinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				275BCA291C57C50A00FF3647 /* Spinner.framework */,
-				275BCA331C57C50A00FF3647 /* Spinner.xctest */,
+				275BCA331C57C50A00FF3647 /* SpinnerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,7 +136,7 @@
 			);
 			name = SpinnerTests;
 			productName = ActivityIndicatorTests;
-			productReference = 275BCA331C57C50A00FF3647 /* Spinner.xctest */;
+			productReference = 275BCA331C57C50A00FF3647 /* SpinnerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -354,7 +354,7 @@
 				INFOPLIST_FILE = SpinnerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.SpinnerTests;
-				PRODUCT_NAME = Spinner;
+				PRODUCT_NAME = SpinnerTests;
 				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
@@ -365,7 +365,7 @@
 				INFOPLIST_FILE = SpinnerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nodes.SpinnerTests;
-				PRODUCT_NAME = Spinner;
+				PRODUCT_NAME = SpinnerTests;
 				SWIFT_VERSION = 2.3;
 			};
 			name = Release;

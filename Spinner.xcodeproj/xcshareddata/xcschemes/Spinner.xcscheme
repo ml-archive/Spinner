@@ -26,14 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "275BCA321C57C50A00FF3647"
-               BuildableName = "Spinner.xctest"
+               BuildableName = "SpinnerTests.xctest"
                BlueprintName = "SpinnerTests"
                ReferencedContainer = "container:Spinner.xcodeproj">
             </BuildableReference>

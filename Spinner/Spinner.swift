@@ -129,10 +129,17 @@ public extension SpinnerView {
      - Parameter duration: The animation duration.
      */
     public static func setCustomImages(images: [UIImage], duration: NSTimeInterval) {
-        let image = UIImageView(frame: CGRectMake(0, 0, images[0].size.width, images[0].size.height))
-        image.animationImages = images
-        image.animationDuration = duration
-        animationImage = image
+        
+        if images.count == 0 {
+            animationImage?.removeFromSuperview()
+            animationImage = nil
+        }
+        else {
+            let image = UIImageView(frame: CGRectMake(0, 0, images[0].size.width, images[0].size.height))
+            image.animationImages = images
+            image.animationDuration = duration
+            animationImage = image
+        }
     }
 
     /**
