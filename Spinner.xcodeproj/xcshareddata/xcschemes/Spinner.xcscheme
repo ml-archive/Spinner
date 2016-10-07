@@ -34,7 +34,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "275BCA321C57C50A00FF3647"
-               BuildableName = "Spinner.xctest"
+               BuildableName = "SpinnerTests.xctest"
                BlueprintName = "SpinnerTests"
                ReferencedContainer = "container:Spinner.xcodeproj">
             </BuildableReference>
