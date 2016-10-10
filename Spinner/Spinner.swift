@@ -19,36 +19,37 @@ public protocol Spinner {
     /**
      Dismiss the Spinner. Implementations should remove any views from their superview.
      
-     - Parameter enablesUserInteraction: A boolean that specifies if the user interaction on the view should be enabled when the spinner is dismissed
      */
-    func dismiss(enablesUserInteraction enablesUserInteraction: Bool)
-}
-
-public extension Spinner {
-    func dismiss(enablesUserInteraction enablesUserInteraction: Bool = false){}
+    func dismiss()
 }
 
 public class SpinnerView: NSObject, Spinner {
-
+    
     //TODO: Add an option to offset the indicator in the view or button
-
+    
     private var controlTitleColors: [ControlTitleColor]?
     private var spinner: UIActivityIndicatorView?
     private var imageView: UIImageView?
-
+    private var userInteractionEnabledAtReception = true
+    
     /**
      To display the indicator centered in a view.
      
      - Parameter view: The view to display the indicator in.
      - Parameter style: A constant that specifies the style of the object to be created.
      - Parameter color: A UIColor that specifies the tint of the spinner
-     - Parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown
+     - Parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown. Default is true
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    public static func showSpinnerInView(view: UIView, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil, disablesUserInteraction: Bool = false) -> Spinner {
-        let center      = CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2)
+    
+    public static func showSpinnerInView(view: UIView, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil, disablesUserInteraction: Bool = true) -> Spinner {
+        let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
+        
         let spinner     = UIActivityIndicatorView(activityIndicatorStyle: style)
+        
+        let spinnerView = SpinnerView()
+        spinnerView.userInteractionEnabledAtReception = view.userInteractionEnabled
         
         if disablesUserInteraction {
             spinner.frame = view.frame
@@ -61,10 +62,9 @@ public class SpinnerView: NSObject, Spinner {
         
         spinner.startAnimating()
         view.addSubview(spinner)
+        spinnerView.spinner = spinner
         
-        let view = SpinnerView()
-        view.spinner = spinner
-        return view
+        return spinnerView
     }
     
     /**
@@ -74,39 +74,41 @@ public class SpinnerView: NSObject, Spinner {
      - Parameter button: The button to display the indicator in.
      - Parameter style: A constant that specifies the style of the object to be created.
      - Parameter color: A UIColor that specifies the tint of the spinner
-     - Parameter disablesUserInteraction: A boolean that specifies if the user interaction on the button should be disabled while the spinner is shown
+     - Parameter disablesUserInteraction: A boolean that specifies if the user interaction on the button should be disabled while the spinner is shown. Default is true
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
     public static func showSpinnerInButton(button: UIButton, style: UIActivityIndicatorViewStyle = .White, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> Spinner {
+        
         let view = showSpinnerInView(button, style: style, color: color)
-        button.userInteractionEnabled = !disablesUserInteraction
+        
         if let spinnerView = view as? SpinnerView {
+            spinnerView.userInteractionEnabledAtReception = button.userInteractionEnabled
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
+        }
+        if disablesUserInteraction {
+            button.userInteractionEnabled = false
         }
         
         return view
     }
-
+    
     /**
      To dismiss the currently displayed indicator.
      The views interaction will then be enabled depending on the parameter boolean
      If shown in a button the titles text will become visible
      
-     - Parameter enablesUserInteraction: A boolean that specifies if the user interaction on the view should be enabled when the spinner is dismissed
      */
-    public func dismiss(enablesUserInteraction: Bool = false) {
-        if let button = spinner?.superview as? UIButton {
-            button.restoreTitleColors(controlTitleColors)
-            if enablesUserInteraction {
-                button.userInteractionEnabled = true
-            }
-        }
-        if let view = spinner?.superview where enablesUserInteraction == true {
-            view.userInteractionEnabled = true
-        }
+    public func dismiss() {
         
+        if let superView = spinner?.superview {
+            superView.userInteractionEnabled = self.userInteractionEnabledAtReception
+            if let button = superView as? UIButton {
+                button.restoreTitleColors( controlTitleColors)
+            }
+            
+        }
         spinner?.dismiss()
         imageView?.dismiss()
     }
@@ -114,43 +116,42 @@ public class SpinnerView: NSObject, Spinner {
 
 // Extension of SpinnerView that supports an animated UIImageView as a custom activity indicator
 public extension SpinnerView {
-
+    
     // Private reference to a proxy UIImageView holding images for use in custom spinner.
     private static var animationImage: UIImageView?
-
+    
     /**
      Used to create the custom indicator. Call this once (on app open, for example) and it
      will be set for the lifetime of the app.
-
+     
      - Note:	Currently only supports one custom indicator. If you need multiple custom activity
      indicators, you are probably better off creating something custom.
-
+     
      - Parameter images: An array containing the UIImages to use for the animation.
      - Parameter duration: The animation duration.
      */
     public static func setCustomImages(images: [UIImage], duration: NSTimeInterval) {
-        
         if images.count == 0 {
             animationImage?.removeFromSuperview()
             animationImage = nil
         }
         else {
-            let image = UIImageView(frame: CGRectMake(0, 0, images[0].size.width, images[0].size.height))
+            let image = UIImageView(frame: CGRect(x: 0, y: 0, width: images[0].size.width, height: images[0].size.height))
             image.animationImages = images
             image.animationDuration = duration
             animationImage = image
         }
     }
-
+    
     /**
      To display the indicator centered in a view.
-
+     
      - Note: If the `animationImage` has not been created via `setCustomImages(_:duration:)`,
      it will default to the normal `UIActivityIndicatorView` and will not use
      a custom `UIImageView`.
-
+     
      - Parameter view: The view to display the indicator in.
-
+     
      - Returns: A reference to the `Spinner` that was created, so that it can be dismissed as needed.
      */
     public static func showCustomSpinnerInView(view: UIView) -> Spinner {
@@ -161,7 +162,7 @@ public extension SpinnerView {
             imageView.animationImages = image.animationImages
             imageView.startAnimating()
             view.addSubview(imageView)
-
+            
             let spinnerView = SpinnerView()
             spinnerView.imageView = imageView
             return spinnerView
@@ -170,13 +171,13 @@ public extension SpinnerView {
             return showSpinnerInView(view)
         }
     }
-
+    
     /**
-     To display the indicator centered in a button. 
+     To display the indicator centered in a button.
      The button's titleLabel colors will be set to clear color while the indicator is shown.
-
+     
      - Parameter button: The button to display the indicator in.
-
+     
      - Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
      */
     public static func showCustomSpinnerInButton(button: UIButton, disablesUserInteraction:Bool = true) -> Spinner {
@@ -186,7 +187,7 @@ public extension SpinnerView {
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
         }
-
+        
         return view
     }
 }
@@ -195,9 +196,9 @@ public extension SpinnerView {
 
 // Extension to allow UIActivityIndicatorView to be dismissed.
 extension UIActivityIndicatorView: Spinner {
-
+    
     // Called when the activity indicator should be removed.
-    public func dismiss(enablesUserInteraction enablesUserInteraction: Bool = false) {
+    public func dismiss() {
         stopAnimating()
         removeFromSuperview()
     }
@@ -205,9 +206,9 @@ extension UIActivityIndicatorView: Spinner {
 
 // Extension to allow UIImageView to be dismissed
 extension UIImageView: Spinner {
-
+    
     // Called when the activity indicator should be removed.
-    public func dismiss(enablesUserInteraction enablesUserInteraction: Bool = false) {
+    public func dismiss() {
         stopAnimating()
         removeFromSuperview()
     }
@@ -216,7 +217,7 @@ extension UIImageView: Spinner {
 // MARK: - Private -
 
 private extension UIButton {
-
+    
     // Extension to return an array of every color for every button state
     private func allTitleColors() -> [ControlTitleColor] {
         var colors: [ControlTitleColor] = [
@@ -227,26 +228,26 @@ private extension UIButton {
             (.Application, titleColorForState(.Application)),
             (.Reserved, titleColorForState(.Reserved))
         ]
-
+        
         if #available(iOS 9.0, *) {
             colors.append((.Focused, titleColorForState(.Focused)))
         }
-
+        
         return colors
     }
-
+    
     /**
-     Function to set the buttons title colors to specific button states passed in the array parameter
-     
-     - Parameter colors: An array of ControlTitleColor each containing a UIControlState and a UIColor
-     */
+    Function to set the buttons title colors to specific button states passed in the array parameter
+    
+    - Parameter colors: An array of ControlTitleColor each containing a UIControlState and a UIColor
+    */
     private func restoreTitleColors(colors: [ControlTitleColor]?) {
         guard let colors = colors else { return }
         for color in colors {
             setTitleColor(color.1, forState: color.0)
         }
     }
-
+    
     /**
      Sets all the the buttons title colors to clear
      */
