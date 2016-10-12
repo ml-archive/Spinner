@@ -103,7 +103,7 @@ class SpinnerTests: XCTestCase {
         
         let spinner = SpinnerView.showSpinnerInView(baseView, style: .Gray, disablesUserInteraction: true)
         
-        spinner.dismiss(enablesUserInteraction: true)
+        spinner.dismiss()
     }
     
     //MARK: Button Spinner
@@ -137,7 +137,7 @@ class SpinnerTests: XCTestCase {
         
         XCTAssertTrue(button.currentTitleColor == UIColor.clearColor())
         
-        spinner.dismiss(true)
+        spinner.dismiss()
         
         XCTAssertTrue(button.currentTitleColor == UIColor.blueColor())
     }
@@ -215,7 +215,7 @@ class SpinnerTests: XCTestCase {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
         UIRectFill(rect)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return image
     }
