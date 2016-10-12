@@ -41,6 +41,17 @@ class SpinnerTests: XCTestCase {
         let titleColorRed = button.titleColor(for: UIControlState.normal) == UIColor.red
         XCTAssertTrue(titleColorRed)
     }
+    func testDismissSpinnerInButtonWithChangedColor() {
+        button.setTitleColor(UIColor.red, for: UIControlState.normal)
+        let spinner = SpinnerView.showSpinner(inButton: button)
+        button.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        spinner.dismiss()
+        let hasSpinner = button.subviews.contains {$0 is Spinner}
+        XCTAssertFalse(hasSpinner && button.isUserInteractionEnabled)
+        let titleColorBlue = button.titleColor(for: UIControlState.normal) == UIColor.blue
+        XCTAssertTrue(titleColorBlue)
+    }
+    
     
     func testShowSpinnerInDisabledButton() {
         button.isUserInteractionEnabled = false
