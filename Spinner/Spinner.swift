@@ -44,7 +44,7 @@ public class SpinnerView: NSObject, Spinner {
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
 
-    public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction: Bool = true) -> Spinner {
+    public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction: Bool = true) -> SpinnerView {
         let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
 
         let spinner     = UIActivityIndicatorView(activityIndicatorStyle: style)
@@ -79,7 +79,7 @@ public class SpinnerView: NSObject, Spinner {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> Spinner {
+    public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> SpinnerView {
         
         let view = showSpinner(inView: button, style: style, color: color)
         

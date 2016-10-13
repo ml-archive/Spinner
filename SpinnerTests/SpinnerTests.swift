@@ -27,9 +27,10 @@ class SpinnerTests: XCTestCase {
     
     func testShowSpinnerInButton() {
         button.isUserInteractionEnabled = true
-        _ = SpinnerView.showSpinner(inButton: button)
+        let spinnerView = SpinnerView.showSpinner(inButton: button)
         let hasSpinner = button.subviews.contains {$0 is Spinner}
         XCTAssert(hasSpinner && !button.isUserInteractionEnabled)
+        XCTAssert(spinnerView.isKind(of: SpinnerView.classForCoder()))
     }
     
     func testDismissSpinnerInButton() {
