@@ -18,8 +18,6 @@ public protocol Spinner {
     
     /**
      Dismiss the Spinner. Implementations should remove any views from their superview.
-     
-     - Parameter enablesUserInteraction: A boolean that specifies if the user interaction on the view should be enabled when the spinner is dismissed
      */
     func dismiss()
 }
