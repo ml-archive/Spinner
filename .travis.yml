@@ -3,6 +3,7 @@ osx_image: xcode8
 xcode_sdk: iphonesimulator10.0
 branches:
   only:
+  - master
   - develop
   - swift-3.0
 
