@@ -83,7 +83,7 @@ public class SpinnerView: NSObject, Spinner {
         let view = showSpinnerInView(button, style: style, color: color)
         
         if let spinnerView = view as? SpinnerView {
-            spinnerView.userInteractionEnabledAtReception = button.userInteractionEnabled
+            
             spinnerView.controlTitleColors = button.allTitleColors()
             button.removeAllTitleColors()
         }

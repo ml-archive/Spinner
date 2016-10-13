@@ -11,22 +11,16 @@ import XCTest
 
 class SpinnerTests: XCTestCase {
     
-    let baseView = UIView()
+    var baseView = UIView()
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
+        baseView = UIView()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {
@@ -100,10 +94,10 @@ class SpinnerTests: XCTestCase {
     }
     
     func testDismissSpinnerInViewWithUserInteraction() {
-        
+        baseView.userInteractionEnabled = true
         let spinner = SpinnerView.showSpinnerInView(baseView, style: .Gray, disablesUserInteraction: true)
-        
         spinner.dismiss()
+        XCTAssertTrue(baseView.userInteractionEnabled)
     }
     
     //MARK: Button Spinner
@@ -121,7 +115,7 @@ class SpinnerTests: XCTestCase {
         XCTAssertTrue(button.currentTitleColor == UIColor.clearColor())
         
         spinner.dismiss()
-        
+        XCTAssertTrue(button.userInteractionEnabled)
         XCTAssertTrue(button.currentTitleColor == UIColor.blueColor())
     }
     
