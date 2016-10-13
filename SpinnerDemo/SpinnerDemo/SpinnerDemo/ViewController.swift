@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var testButton: UIButton!
     var testButtonSpinnerView : SpinnerView? = nil
 
+    @IBOutlet weak var attributedTextButton: UIButton!
     @IBOutlet weak var loadingInViewButton: UIButton!
     @IBOutlet weak var loadinInVCButton: UIButton!
     
@@ -21,6 +22,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var customTestButton: UIButton!
     @IBOutlet weak var customLoadingInViewButton: UIButton!
+    @IBOutlet weak var customAttributedTextButton: UIButton!
     @IBOutlet weak var customLoadinInVCButton: UIButton!
     
     var customImages : [UIImage] = []
@@ -31,10 +33,12 @@ class ViewController: UIViewController {
         customImages = [UIImage(named: "loading_0")!, UIImage(named: "loading_1")!, UIImage(named: "loading_2")!, UIImage(named: "loading_3")!, UIImage(named: "loading_4")!, UIImage(named: "loading_5")!, UIImage(named: "loading_6")!, UIImage(named: "loading_7")!, UIImage(named: "loading_8")!]
         
         addBorderToButton(button: testButton)
+        addBorderToButton(button: attributedTextButton)
         addBorderToButton(button: loadingInViewButton)
         addBorderToButton(button: loadinInVCButton)
         
         addBorderToButton(button: customTestButton)
+        addBorderToButton(button: customAttributedTextButton)
         addBorderToButton(button: customLoadingInViewButton)
         addBorderToButton(button: customLoadinInVCButton)
     }
@@ -54,6 +58,16 @@ class ViewController: UIViewController {
         _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (finished) in
             
             self.testButtonSpinnerView?.dismiss()
+        })
+    }
+    
+    @IBAction func attributedButtonPressed(_ sender: AnyObject) {
+        
+        let spinnerView = SpinnerView.showSpinner(inButton: attributedTextButton)
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (finished) in
+            
+            spinnerView.dismiss()
         })
     }
     
@@ -89,6 +103,18 @@ class ViewController: UIViewController {
             customSpinner.dismiss()
         })
     }
+    
+    @IBAction func customAttributedTestButtonPressed(_ sender: AnyObject) {
+        
+        SpinnerView.set(customImages: customImages, duration: 0.2)
+        let customSpinner = SpinnerView.showCustomSpinner(inButton: customAttributedTextButton)
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (finished) in
+            
+            customSpinner.dismiss()
+        })
+    }
+    
     
     @IBAction func showCustomLoadingInLabel(_ sender: AnyObject) {
         

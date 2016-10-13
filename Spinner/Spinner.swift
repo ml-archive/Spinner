@@ -9,6 +9,7 @@
 import UIKit
 
 public typealias ControlTitleColor = (UIControlState, UIColor?)
+public typealias ControlTitleAttributes = (UIControlState, NSAttributedString?)
 
 /**
 	Protocol for any view that can be used as a Spinner. Currently only has one dismiss
@@ -27,6 +28,7 @@ public class SpinnerView: NSObject, Spinner {
     //TODO: Add an option to offset the indicator in the view or button
     
     fileprivate var controlTitleColors: [ControlTitleColor]?
+    fileprivate var controlTitleAttributes: [ControlTitleAttributes]?
     fileprivate var spinner: UIActivityIndicatorView?
     fileprivate var imageView: UIImageView?
     fileprivate var userInteractionEnabledAtReception = true
@@ -82,6 +84,8 @@ public class SpinnerView: NSObject, Spinner {
         let spinnerView = showSpinner(inView: button, style: style, color: color)
         spinnerView.controlTitleColors = button.allTitleColors()
         button.removeAllTitleColors()
+        spinnerView.controlTitleAttributes = button.allTitleAttributes()
+        button.removeAllAttributedStrings()
         
         if disablesUserInteraction {
             button.isUserInteractionEnabled = false
@@ -95,13 +99,13 @@ public class SpinnerView: NSObject, Spinner {
         if let superView = spinner?.superview {
             superView.isUserInteractionEnabled = self.userInteractionEnabledAtReception
             if let button = superView as? UIButton {
-                button.restore(titleColors: controlTitleColors)
+                button.restore(titleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
             }
         }
         else if let superView = imageView?.superview {
             superView.isUserInteractionEnabled = self.userInteractionEnabledAtReception
             if let button = superView as? UIButton {
-                button.restore(titleColors: controlTitleColors)
+                button.restore(titleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
             }
         }
         
@@ -175,6 +179,8 @@ public extension SpinnerView {
         button.isUserInteractionEnabled = !disablesUserInteraction
         spinnerView.controlTitleColors = button.allTitleColors()
         button.removeAllTitleColors()
+        spinnerView.controlTitleAttributes = button.allTitleAttributes()
+        button.removeAllAttributedStrings()
         return spinnerView
     }
 }
@@ -222,11 +228,35 @@ fileprivate extension UIButton {
         return colors
     }
     
-    fileprivate func restore(titleColors colors: [ControlTitleColor]?) {
-        guard let colors = colors else { return }
-        for color in colors {
-            if titleColor(for: color.0) == .clear {
-                setTitleColor(color.1, for: color.0)
+    fileprivate func allTitleAttributes() -> [ControlTitleAttributes] {
+        var attributes: [ControlTitleAttributes] = [
+            (UIControlState(), attributedTitle(for: UIControlState())),
+            (.highlighted, attributedTitle(for: .highlighted)),
+            (.disabled, attributedTitle(for: .disabled)),
+            (.selected, attributedTitle(for: .selected)),
+            (.application, attributedTitle(for: .application)),
+            (.reserved, attributedTitle(for: .reserved))
+        ]
+        
+        if #available(iOS 9.0, *) {
+            attributes.append((.focused, attributedTitle(for: .focused)))
+        }
+        
+        return attributes
+    }
+    
+    fileprivate func restore(titleColors colors: [ControlTitleColor]?, attributedStrings: [ControlTitleAttributes]?) {
+        if colors != nil {
+            for color in colors! {
+                if titleColor(for: color.0) == .clear {
+                    setTitleColor(color.1, for: color.0)
+                }
+            }
+        }
+        
+        if attributedStrings != nil {
+            for string in attributedStrings! {
+                self.setAttributedTitle(string.1, for: string.0)
             }
         }
     }
@@ -235,6 +265,19 @@ fileprivate extension UIButton {
         let clearedColors = allTitleColors().map({ return ($0.0, UIColor.clear) })
         for color in clearedColors {
             setTitleColor(color.1, for: color.0)
+        }
+    }
+    
+    fileprivate func removeAllAttributedStrings() {
+        self.setAttributedTitle(nil, for: .normal)
+        self.setAttributedTitle(nil, for: .highlighted)
+        self.setAttributedTitle(nil, for: .disabled)
+        self.setAttributedTitle(nil, for: .selected)
+        self.setAttributedTitle(nil, for: .application)
+        self.setAttributedTitle(nil, for: .reserved)
+        
+        if #available(iOS 9.0, *) {
+            self.setAttributedTitle(nil, for: .focused)
         }
     }
 }
