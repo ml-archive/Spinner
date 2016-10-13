@@ -20,7 +20,7 @@ public protocol Spinner {
     /**
      Dismiss the Spinner. Implementations should remove any views from their superview.
      */
-    func dismiss()
+    func dismiss() 
 }
 
 public class SpinnerView: NSObject, Spinner {
