@@ -19,8 +19,6 @@ public protocol Spinner {
     
     /**
      Dismiss the Spinner. Implementations should remove any views from their superview.
-     
-     - Parameter enablesUserInteraction: A boolean that specifies if the user interaction on the view should be enabled when the spinner is dismissed
      */
     func dismiss()
 }
@@ -83,20 +81,17 @@ public class SpinnerView: NSObject, Spinner {
      */
     public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> SpinnerView {
         
-        let view = showSpinner(inView: button, style: style, color: color)
+        let spinnerView = showSpinner(inView: button, style: style, color: color)
+        spinnerView.controlTitleColors = button.allTitleColors()
+        button.removeAllTitleColors()
+        spinnerView.controlTitleAttributes = button.allTitleAttributes()
+        button.removeAllAttributedStrings()
         
-        if let spinnerView = view as? SpinnerView {
-            spinnerView.controlTitleColors = button.allTitleColors()
-            button.removeAllTitleColors()
-            
-            spinnerView.controlTitleAttributes = button.allTitleAttributes()
-            button.removeAllAttributedStrings()
-        }
         if disablesUserInteraction {
             button.isUserInteractionEnabled = false
         }
         
-        return view
+        return spinnerView
     }
     
     public func dismiss() {
@@ -180,16 +175,13 @@ public extension SpinnerView {
      - Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
      */
     public static func showCustomSpinner(inButton button: UIButton, disablesUserInteraction:Bool = true) -> SpinnerView {
-        let view = showCustomSpinner(inView: button)
+        let spinnerView = showCustomSpinner(inView: button)
         button.isUserInteractionEnabled = !disablesUserInteraction
-        if let spinnerView = view as? SpinnerView {
-            spinnerView.controlTitleColors = button.allTitleColors()
-            button.removeAllTitleColors()
-            spinnerView.controlTitleAttributes = button.allTitleAttributes()
-            button.removeAllAttributedStrings()
-        }
-        
-        return view
+        spinnerView.controlTitleColors = button.allTitleColors()
+        button.removeAllTitleColors()
+        spinnerView.controlTitleAttributes = button.allTitleAttributes()
+        button.removeAllAttributedStrings()
+        return spinnerView
     }
 }
 
