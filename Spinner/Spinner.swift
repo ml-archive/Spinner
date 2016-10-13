@@ -81,17 +81,15 @@ public class SpinnerView: NSObject, Spinner {
      */
     public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> SpinnerView {
         
-        let view = showSpinner(inView: button, style: style, color: color)
+        let spinnerView = showSpinner(inView: button, style: style, color: color)
+        spinnerView.controlTitleColors = button.allTitleColors()
+        button.removeAllTitleColors()
         
-        if let spinnerView = view as? SpinnerView {
-            spinnerView.controlTitleColors = button.allTitleColors()
-            button.removeAllTitleColors()
-        }
         if disablesUserInteraction {
             button.isUserInteractionEnabled = false
         }
         
-        return view
+        return spinnerView
     }
     
     public func dismiss() {
@@ -175,14 +173,11 @@ public extension SpinnerView {
      - Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
      */
     public static func showCustomSpinner(inButton button: UIButton, disablesUserInteraction:Bool = true) -> SpinnerView {
-        let view = showCustomSpinner(inView: button)
+        let spinnerView = showCustomSpinner(inView: button)
         button.isUserInteractionEnabled = !disablesUserInteraction
-        if let spinnerView = view as? SpinnerView {
-            spinnerView.controlTitleColors = button.allTitleColors()
-            button.removeAllTitleColors()
-        }
-        
-        return view
+        spinnerView.controlTitleColors = button.allTitleColors()
+        button.removeAllTitleColors()
+        return spinnerView
     }
 }
 
