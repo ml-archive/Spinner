@@ -102,6 +102,13 @@ public class SpinnerView: NSObject, Spinner {
                 button.restore(titleColors: controlTitleColors)
             }
         }
+        else if let superView = imageView?.superview {
+            superView.isUserInteractionEnabled = self.userInteractionEnabledAtReception
+            if let button = superView as? UIButton {
+                button.restore(titleColors: controlTitleColors)
+            }
+        }
+        
         spinner?.dismiss()
         imageView?.dismiss()
     }
@@ -141,10 +148,10 @@ public extension SpinnerView {
      
      - Returns: A reference to the `Spinner` that was created, so that it can be dismissed as needed.
      */
-    public static func showCustomSpinner(inView view: UIView) -> Spinner {
+    public static func showCustomSpinner(inView view: UIView) -> SpinnerView {
         if let image = animationImage {
             let imageView = UIImageView(frame: view.bounds)
-            imageView.contentMode = .center
+            imageView.contentMode = .scaleAspectFit
             imageView.animationDuration = image.animationDuration
             imageView.animationImages = image.animationImages
             imageView.startAnimating()
@@ -167,7 +174,7 @@ public extension SpinnerView {
      
      - Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
      */
-    public static func showCustomSpinner(inButton button: UIButton, disablesUserInteraction:Bool = true) -> Spinner {
+    public static func showCustomSpinner(inButton button: UIButton, disablesUserInteraction:Bool = true) -> SpinnerView {
         let view = showCustomSpinner(inView: button)
         button.isUserInteractionEnabled = !disablesUserInteraction
         if let spinnerView = view as? SpinnerView {
