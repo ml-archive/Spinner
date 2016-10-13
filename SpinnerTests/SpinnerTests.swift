@@ -53,7 +53,6 @@ class SpinnerTests: XCTestCase {
         XCTAssertTrue(titleColorBlue)
     }
     
-    
     func testShowSpinnerInDisabledButton() {
         button.isUserInteractionEnabled = false
         _ = SpinnerView.showSpinner(inButton: button)
