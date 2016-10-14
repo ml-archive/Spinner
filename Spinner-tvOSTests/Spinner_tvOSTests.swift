@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Spinner_tvOS
+@testable import Spinner
 
 class Spinner_tvOSTests: XCTestCase {
     
