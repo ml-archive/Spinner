@@ -54,7 +54,8 @@ public class SpinnerView: NSObject, Spinner {
         
         if disablesUserInteraction {
             spinner.frame = view.frame
-            spinner.layer.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
+//            This should not modify the layer background color
+//            spinner.layer.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             view.isUserInteractionEnabled = false
         }
         spinner.color = color
