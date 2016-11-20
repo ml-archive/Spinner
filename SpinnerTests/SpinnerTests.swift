@@ -87,6 +87,23 @@ class SpinnerTests: XCTestCase {
         XCTAssertTrue(view.isUserInteractionEnabled)
     }
     
+    func testShowSpinnerInViewDimBackground() {
+        view.isUserInteractionEnabled = true
+        _ = SpinnerView.showSpinner(inView: view, dimBackground: true)
+        let hasSpinner = view.subviews.contains {$0 is Spinner}
+        let dimmedBackground = view.subviews.count == 2
+        XCTAssert(hasSpinner && dimmedBackground && !view.isUserInteractionEnabled)
+    }
+    
+    func testDismissSpinnerInViewDimBackground() {
+        let spinner = SpinnerView.showSpinner(inView: view, dimBackground: true)
+        spinner.dismiss()
+        let hasSpinner = view.subviews.contains {$0 is Spinner}
+        XCTAssertFalse(hasSpinner)
+        XCTAssertTrue(view.isUserInteractionEnabled)
+        XCTAssert(view.subviews.count == 0)
+    }
+    
     func testShowCustomSpinnerInView() {
         view.isUserInteractionEnabled = true
         _ = SpinnerView.showCustomSpinner(inView: view)
