@@ -32,6 +32,7 @@ public class SpinnerView: NSObject, Spinner {
     fileprivate var spinner: UIActivityIndicatorView?
     fileprivate var imageView: UIImageView?
     fileprivate var userInteractionEnabledAtReception = true
+    fileprivate var dimView: UIView?
     
     /**
      To display the indicator centered in a view.
@@ -40,11 +41,12 @@ public class SpinnerView: NSObject, Spinner {
      - Parameter style: A constant that specifies the style of the object to be created.
      - Parameter color: A UIColor that specifies the tint of the spinner
      - Parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown. Default is true
+     - Parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
     
-    public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction: Bool = true) -> SpinnerView {
+    public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction: Bool = true, dimBackground: Bool = false) -> SpinnerView {
         let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
         
         let spinner     = UIActivityIndicatorView(activityIndicatorStyle: style)
@@ -54,16 +56,23 @@ public class SpinnerView: NSObject, Spinner {
         
         if disablesUserInteraction {
             spinner.frame = view.frame
-//            This should not modify the layer background color
-//            spinner.layer.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             view.isUserInteractionEnabled = false
         }
+       
         spinner.color = color
         spinner.center = center
         spinner.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
         
         spinner.startAnimating()
         view.addSubview(spinner)
+        
+        if dimBackground {
+            spinnerView.dimView = UIView(frame: view.bounds)
+            if let dimView = spinnerView.dimView {
+                dimView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+                view.insertSubview(dimView, belowSubview: spinner)
+            }
+        }
         spinnerView.spinner = spinner
         
         return spinnerView
@@ -112,6 +121,7 @@ public class SpinnerView: NSObject, Spinner {
         
         spinner?.dismiss()
         imageView?.dismiss()
+        dimView?.removeFromSuperview()
     }
 }
 
@@ -146,13 +156,14 @@ public extension SpinnerView {
      a custom `UIImageView`.
      
      - Parameter view: The view to display the indicator in.
+     - Parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false
      
      - Returns: A reference to the `Spinner` that was created, so that it can be dismissed as needed.
      */
-    public static func showCustomSpinner(inView view: UIView) -> SpinnerView {
+    public static func showCustomSpinner(inView view: UIView, dimBackground: Bool = false) -> SpinnerView {
         if let image = animationImage {
             let imageView = UIImageView(frame: view.bounds)
-            imageView.contentMode = .scaleAspectFit
+            imageView.contentMode = .center
             imageView.animationDuration = image.animationDuration
             imageView.animationImages = image.animationImages
             imageView.startAnimating()
@@ -160,6 +171,14 @@ public extension SpinnerView {
             
             let spinnerView = SpinnerView()
             spinnerView.imageView = imageView
+            if dimBackground {
+                spinnerView.dimView = UIView(frame: view.bounds)
+                if let dimView = spinnerView.dimView {
+                    dimView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+                    view.insertSubview(dimView, belowSubview: imageView)
+                }
+            }
+
             return spinnerView
         }
         else {
