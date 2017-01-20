@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "275BCA281C57C50A00FF3647"
+               BlueprintIdentifier = "E3FC3F521DA2584E00CEF414"
                BuildableName = "Spinner.framework"
-               BlueprintName = "Spinner"
+               BlueprintName = "Spinner-tvOS"
                ReferencedContainer = "container:Spinner.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,16 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BD9ABA611D9D4A740013E462"
-               BuildableName = "SpinnerTests.xctest"
-               BlueprintName = "SpinnerTests"
+               BlueprintIdentifier = "E3FC3F5A1DA2584E00CEF414"
+               BuildableName = "Spinner-tvOSTests.xctest"
+               BlueprintName = "Spinner-tvOSTests"
                ReferencedContainer = "container:Spinner.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "275BCA281C57C50A00FF3647"
+            BlueprintIdentifier = "E3FC3F521DA2584E00CEF414"
             BuildableName = "Spinner.framework"
-            BlueprintName = "Spinner"
+            BlueprintName = "Spinner-tvOS"
             ReferencedContainer = "container:Spinner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "275BCA281C57C50A00FF3647"
+            BlueprintIdentifier = "E3FC3F521DA2584E00CEF414"
             BuildableName = "Spinner.framework"
-            BlueprintName = "Spinner"
+            BlueprintName = "Spinner-tvOS"
             ReferencedContainer = "container:Spinner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "275BCA281C57C50A00FF3647"
+            BlueprintIdentifier = "E3FC3F521DA2584E00CEF414"
             BuildableName = "Spinner.framework"
-            BlueprintName = "Spinner"
+            BlueprintName = "Spinner-tvOS"
             ReferencedContainer = "container:Spinner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

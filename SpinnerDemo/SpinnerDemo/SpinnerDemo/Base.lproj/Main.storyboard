@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SpinnerDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZgO-3H-drD">
+                                <color key="backgroundColor" red="1" green="0.94842303240000003" blue="0.59821779119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9A4-zt-nZ5"/>
+                                    <constraint firstAttribute="width" constant="200" id="AeG-Dg-ahu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="15"/>
+                                <state key="normal" title="Loading Button">
+                                    <color key="titleColor" red="0.0" green="0.62352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="testButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UkC-tF-Phb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="view" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXe-HP-SFf">
+                                <color key="backgroundColor" red="0.8541339018481483" green="0.99633601126419746" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="133" id="cdS-Sv-n7K"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.62352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3P-fg-iN9">
+                                <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Show Loading In View Below"/>
+                                <connections>
+                                    <action selector="showLoadingInLabel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bWi-YX-q0X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQZ-eV-TUe">
+                                <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Show Loading In View Controller"/>
+                                <connections>
+                                    <action selector="showLoadingInVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J3Z-ab-SDs"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standard Spinner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIV-x0-dPA">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U91-xa-TBC">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="dKL-8n-E5t"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom Spinner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zN-eM-gMQ">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0mg-s3-lyb">
+                                <color key="backgroundColor" red="1" green="0.94842303240740744" blue="0.59821779116543206" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="e0J-Ae-IXK"/>
+                                    <constraint firstAttribute="width" constant="200" id="yLO-rx-j4i"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Loading Button">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.62352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="customTestButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Py5-z8-Lsu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-cy-fDl">
+                                <color key="backgroundColor" red="1" green="0.94842303240000003" blue="0.59821779119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Eig-Fn-OAA"/>
+                                    <constraint firstAttribute="width" constant="200" id="HAJ-Xy-5xI"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="eEb-RT-zpm"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="gYI-Cx-NS2"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Loading">
+                                            <attributes>
+                                                <color key="NSColor" red="0.84989872685185186" green="0.27501716257160491" blue="0.15426070601851852" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="18" name="ArialRoundedMTBold"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.62352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Button">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.72880497685185186" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="15" name="Palatino-Bold"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="customAttributedTestButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9fv-yT-TZt"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="view" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UT-DJ-AA1">
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.78584346059999999" blue="0.86944898329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="133" id="5OD-D1-Hz9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="0.94117647059999998" green="0.16862745100000001" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-PJ-eIz">
+                                <color key="backgroundColor" red="0.0" green="0.62352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Show Loading In View Below">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showCustomLoadingInLabel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qoJ-1L-QHH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zM4-CO-HHY">
+                                <color key="backgroundColor" red="0.0" green="0.62352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Show Loading In View Controller">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showCustomLoadingInVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hmN-FW-102"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIW-2y-yev">
+                                <color key="backgroundColor" red="1" green="0.94842303240000003" blue="0.59821779119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="L6L-8v-XbV"/>
+                                    <constraint firstAttribute="width" constant="200" id="fbt-FC-DC0"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Loading">
+                                            <attributes>
+                                                <color key="NSColor" red="0.84989872685185186" green="0.27501716257160491" blue="0.15426070601851852" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="18" name="ArialRoundedMTBold"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.62352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Button">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.72880497685185186" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="15" name="Palatino-Bold"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="attributedButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kys-37-jYd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="zM4-CO-HHY" secondAttribute="trailing" id="1rP-DS-Mld"/>
+                            <constraint firstItem="dQZ-eV-TUe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3Sr-Y1-EpC"/>
+                            <constraint firstItem="0mg-s3-lyb" firstAttribute="top" secondItem="7zN-eM-gMQ" secondAttribute="bottom" constant="10" id="3ca-Aj-0bO"/>
+                            <constraint firstItem="7zN-eM-gMQ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="455-7B-gMg"/>
+                            <constraint firstItem="dEH-PJ-eIz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="71p-Ve-7Xj"/>
+                            <constraint firstItem="7zN-eM-gMQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="9OF-Tv-peb"/>
+                            <constraint firstItem="N3P-fg-iN9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="B8F-TR-E1g"/>
+                            <constraint firstItem="ZgO-3H-drD" firstAttribute="top" secondItem="kIV-x0-dPA" secondAttribute="bottom" constant="10" id="BCc-5V-bZl"/>
+                            <constraint firstItem="Oe8-cy-fDl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BuR-uU-rUI"/>
+                            <constraint firstItem="cIW-2y-yev" firstAttribute="top" secondItem="ZgO-3H-drD" secondAttribute="bottom" constant="2" id="E3b-mq-gqA"/>
+                            <constraint firstItem="kXe-HP-SFf" firstAttribute="top" secondItem="N3P-fg-iN9" secondAttribute="bottom" constant="10" id="FgM-Zb-pqg"/>
+                            <constraint firstItem="0mg-s3-lyb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ikh-An-kQP"/>
+                            <constraint firstItem="dQZ-eV-TUe" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="JIw-uP-eK2"/>
+                            <constraint firstItem="kIV-x0-dPA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JYk-WK-pQX"/>
+                            <constraint firstItem="3UT-DJ-AA1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JcB-ip-fad"/>
+                            <constraint firstItem="zM4-CO-HHY" firstAttribute="top" secondItem="3UT-DJ-AA1" secondAttribute="bottom" constant="40" id="KrE-1a-bHJ"/>
+                            <constraint firstItem="kIV-x0-dPA" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Mzk-jG-TeN"/>
+                            <constraint firstItem="N3P-fg-iN9" firstAttribute="top" secondItem="cIW-2y-yev" secondAttribute="bottom" constant="8" id="PHg-nJ-f3F"/>
+                            <constraint firstItem="3UT-DJ-AA1" firstAttribute="top" secondItem="dEH-PJ-eIz" secondAttribute="bottom" constant="10" id="Phw-4D-qrc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dEH-PJ-eIz" secondAttribute="trailing" id="Qxh-Sm-LjT"/>
+                            <constraint firstItem="dQZ-eV-TUe" firstAttribute="top" secondItem="kXe-HP-SFf" secondAttribute="bottom" constant="40" id="RVz-n3-Ur1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="U91-xa-TBC" secondAttribute="trailing" id="Xf5-aX-9qW"/>
+                            <constraint firstItem="U91-xa-TBC" firstAttribute="top" secondItem="dQZ-eV-TUe" secondAttribute="bottom" constant="20" id="YFD-vk-Z6m"/>
+                            <constraint firstItem="kXe-HP-SFf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZmJ-3o-lz4"/>
+                            <constraint firstItem="cIW-2y-yev" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cOv-Sr-0El"/>
+                            <constraint firstItem="Oe8-cy-fDl" firstAttribute="top" secondItem="0mg-s3-lyb" secondAttribute="bottom" constant="2" id="cT7-Ql-ifH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N3P-fg-iN9" secondAttribute="trailing" id="em8-xG-nuA"/>
+                            <constraint firstItem="U91-xa-TBC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fSe-XV-lda"/>
+                            <constraint firstItem="ZgO-3H-drD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iUt-oK-0D2"/>
+                            <constraint firstItem="dEH-PJ-eIz" firstAttribute="top" secondItem="Oe8-cy-fDl" secondAttribute="bottom" constant="8" id="mZc-0r-g11"/>
+                            <constraint firstItem="zM4-CO-HHY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="mpw-FW-wmq"/>
+                            <constraint firstItem="zM4-CO-HHY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rDH-D8-Kxh"/>
+                            <constraint firstItem="7zN-eM-gMQ" firstAttribute="top" secondItem="U91-xa-TBC" secondAttribute="bottom" constant="10" id="ugW-lI-Y5X"/>
+                            <constraint firstItem="dEH-PJ-eIz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vMa-kX-iGm"/>
+                            <constraint firstItem="kIV-x0-dPA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="vpp-bh-RUc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="attributedTextButton" destination="cIW-2y-yev" id="3QA-0Z-5NS"/>
+                        <outlet property="customAttributedTextButton" destination="Oe8-cy-fDl" id="cZ7-oY-nfC"/>
+                        <outlet property="customLoadinInVCButton" destination="zM4-CO-HHY" id="QcV-Xg-UGs"/>
+                        <outlet property="customLoadingInViewButton" destination="dEH-PJ-eIz" id="zJ9-zh-s4H"/>
+                        <outlet property="customTestButton" destination="0mg-s3-lyb" id="xxL-CQ-VCe"/>
+                        <outlet property="customTestLabel" destination="3UT-DJ-AA1" id="Rym-KH-f0w"/>
+                        <outlet property="loadinInVCButton" destination="dQZ-eV-TUe" id="XwB-E3-8vE"/>
+                        <outlet property="loadingInViewButton" destination="N3P-fg-iN9" id="W9W-Kb-tZj"/>
+                        <outlet property="testButton" destination="ZgO-3H-drD" id="BwN-OX-nmp"/>
+                        <outlet property="testLabel" destination="kXe-HP-SFf" id="Gky-Go-aMb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+</document>
