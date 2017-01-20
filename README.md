@@ -3,6 +3,12 @@
 
 A helpful loading spinner tool allowing you to present a UIActivityIndicator view directly in to views and buttons.
 
+## 📝 Requirements
+
+* iOS 8.0+
+* Swift 3.0+  
+*(Swift 2.2 & Swift 2.3 supported in older versions)*
+
 ## 📦 Installation
 
 ### Carthage
@@ -10,8 +16,17 @@ A helpful loading spinner tool allowing you to present a UIActivityIndicator vie
 github "nodes-ios/Spinner" ~> 1.0
 ~~~
 
+> Last versions compatible with lower Swift versions:  
+>
+> **Swift 2.3**  
+> `github "nodes-ios/Spinner" == 0.2.7`
+>
+> **Swift 2.2**  
+> `github "nodes-ios/Spinner" == 0.2.4`
 
-## 🔧 Setup
+## 💻 Usage
+
+### Standard spinner
 Easily present spinners in views like so:
 
 ```swift
@@ -36,8 +51,7 @@ To remove the spinner from your view simply call dismiss.
 spinner.dismiss()
 ```
 
-----
-## Custom spinner
+### Custom spinner
 If you would rather use something more custom than the UIActivityIndicator, you can set an array of images to the Spinner with a duration time it takes to animate through them and display it in a view.
 
 ```swift
@@ -45,8 +59,8 @@ public static func set(customImages images: [UIImage], duration: TimeInterval)
 
 public static func showCustomSpinner(inView view: UIView, dimBackground: Bool = false) -> SpinnerView
 ```
-----
-## Buttons
+
+### Buttons
 You can also display the spinner in buttons, simply add the spinner to any UIButton and the spinner will hide the title in the button and display the spinner in the centre of the button. Once the spinner is dismissed, the title will be made visible once more. 
 
 ```swift
