@@ -19,7 +19,7 @@ github "nodes-ios/Spinner" ~> 1.0
 > Last versions compatible with lower Swift versions:  
 >
 > **Swift 2.3**  
-> `github "nodes-ios/Spinner" == 0.2.7`
+> `github "nodes-ios/Spinner" == 0.2.5`
 >
 > **Swift 2.2**  
 > `github "nodes-ios/Spinner" == 0.2.4`
