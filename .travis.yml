@@ -22,13 +22,13 @@ script:
 
   # Build Framework in Debug and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -project "$PROJECT_NAME" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO clean build test | xcpretty;
+      xcodebuild -project "$PROJECT_NAME" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty;
     else
-      xcodebuild -project "$PROJECT_NAME" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO clean build | xcpretty;
+      xcodebuild -project "$PROJECT_NAME" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty;
     fi
 
   # Build in release
-  - xcodebuild -project "$PROJECT_NAME" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO clean build | xcpretty;
+  - xcodebuild -project "$PROJECT_NAME" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty;
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
