@@ -1,6 +1,12 @@
 # Spinner
 > Present loading indicators anywhere quickly and easily
 
+[![Travis](https://travis-ci.org/nodes-ios/Spinner.svg?branch=master)](https://travis-ci.org/nodes-ios/Spinner)
+[![Codecov](https://img.shields.io/codecov/c/github/nodes-ios/Spinner.svg)](https://codecov.io/github/nodes-ios/Spinner)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+![Plaform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nodes-ios/Spinner/blob/master/LICENSE)
+
 A helpful loading spinner tool allowing you to present a UIActivityIndicator view directly in to views and buttons.
 
 ## 📝 Requirements
