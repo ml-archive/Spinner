@@ -170,6 +170,7 @@ public extension SpinnerView {
         if let image = animationImage {
             let imageView = UIImageView(frame: view.bounds)
             imageView.contentMode = .center
+            imageView.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
             imageView.animationDuration = image.animationDuration
             imageView.animationImages = image.animationImages
             imageView.startAnimating()
