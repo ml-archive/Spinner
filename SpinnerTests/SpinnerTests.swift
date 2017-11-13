@@ -153,7 +153,7 @@ class SpinnerTests: XCTestCase {
     func testShowSpinnerInButtonWithAttributedSting() {
         button.isUserInteractionEnabled = true
         
-        let attributedString = NSAttributedString(string: "title", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 19)])
+        let attributedString = NSAttributedString(string: "title", attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 19)])
         button.setAttributedTitle(attributedString, for: .normal)
         
         let spinnerView = SpinnerView.showSpinner(inButton: button)
