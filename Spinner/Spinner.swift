@@ -29,7 +29,7 @@ public class SpinnerView: NSObject, Spinner {
     
     fileprivate var controlTitleColors: [ControlTitleColor]?
     fileprivate var controlTitleAttributes: [ControlTitleAttributes]?
-    fileprivate var spinner: UIActivityIndicatorView?
+    fileprivate var activityIndicator: UIActivityIndicatorView?
     fileprivate var imageView: UIImageView?
     fileprivate var userInteractionEnabledAtReception = true
     fileprivate var dimView: UIView?
@@ -49,32 +49,41 @@ public class SpinnerView: NSObject, Spinner {
     public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction: Bool = true, dimBackground: Bool = false) -> SpinnerView {
         let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
         
-        let spinner     = UIActivityIndicatorView(activityIndicatorStyle: style)
+        
+        let activityIndicator     = UIActivityIndicatorView(activityIndicatorStyle: style)
         
         let spinnerView = SpinnerView()
         spinnerView.userInteractionEnabledAtReception = view.isUserInteractionEnabled
         
+        //In case the previous spinner wasn't dismissed
+        if let oldSpinner = view.subviews.filter({ $0 is Spinner }).first as? Spinner {
+            
+            spinnerView.userInteractionEnabledAtReception = true //We will need to assume userinteraction should be restored as we do not have access to the original SpinnerView
+            oldSpinner.dismiss()
+        }
+        
         if disablesUserInteraction {
-            spinner.frame = view.frame
+            activityIndicator.frame = view.frame
             view.isUserInteractionEnabled = false
         }
        
-        spinner.color = color
-        spinner.center = center
-        spinner.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
+        activityIndicator.color = color
+        activityIndicator.center = center
+        activityIndicator.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
         
-        spinner.startAnimating()
-        view.addSubview(spinner)
+        
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
         
         if dimBackground {
             spinnerView.dimView = UIView(frame: view.bounds)
             if let dimView = spinnerView.dimView {
                 dimView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
                 dimView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                view.insertSubview(dimView, belowSubview: spinner)
+                view.insertSubview(dimView, belowSubview: activityIndicator)
             }
         }
-        spinnerView.spinner = spinner
+        spinnerView.activityIndicator = activityIndicator
         
         return spinnerView
     }
@@ -112,7 +121,7 @@ public class SpinnerView: NSObject, Spinner {
      */
     public func dismiss() {
         
-        if let superView = spinner?.superview {
+        if let superView = activityIndicator?.superview {
             superView.isUserInteractionEnabled = self.userInteractionEnabledAtReception
             if let button = superView as? UIButton {
                 button.restore(titleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
@@ -125,7 +134,7 @@ public class SpinnerView: NSObject, Spinner {
             }
         }
         
-        spinner?.dismiss()
+        activityIndicator?.dismiss()
         imageView?.dismiss()
         dimView?.removeFromSuperview()
     }
@@ -168,6 +177,12 @@ public extension SpinnerView {
      */
     public static func showCustomSpinner(inView view: UIView, dimBackground: Bool = false) -> SpinnerView {
         if let image = animationImage {
+            
+            //In case the previous spinner wasn't dismissed
+            if let oldSpinner = view.subviews.filter({ $0 is Spinner }).first as? Spinner {
+                oldSpinner.dismiss()
+            }
+            
             let imageView = UIImageView(frame: view.bounds)
             imageView.contentMode = .center
             imageView.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]

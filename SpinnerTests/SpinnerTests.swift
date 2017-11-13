@@ -13,6 +13,7 @@ class SpinnerTests: XCTestCase {
     
     var view = UIView()
     var button = UIButton()
+    var globalSpinner: SpinnerView?
     
     override func setUp() {
         super.setUp()
@@ -82,6 +83,18 @@ class SpinnerTests: XCTestCase {
     func testDismissSpinnerInView() {
         let spinner = SpinnerView.showSpinner(inView: view)
         spinner.dismiss()
+        let hasSpinner = view.subviews.contains {$0 is Spinner}
+        XCTAssertFalse(hasSpinner)
+        XCTAssertTrue(view.isUserInteractionEnabled)
+    }
+    
+    func testDismissMultipleAddedGlobalSpinnersInView() {
+        globalSpinner = SpinnerView.showSpinner(inView: view)
+        globalSpinner = SpinnerView.showSpinner(inView: view)
+        globalSpinner = SpinnerView.showSpinner(inView: view)
+        let spinners = view.subviews.filter({ $0 is Spinner })
+        XCTAssertTrue(spinners.count == 1)
+        globalSpinner?.dismiss()
         let hasSpinner = view.subviews.contains {$0 is Spinner}
         XCTAssertFalse(hasSpinner)
         XCTAssertTrue(view.isUserInteractionEnabled)
