@@ -16,6 +16,9 @@ public class SpinnerView: UIActivityIndicatorView {
     
     // MARK: - Static Properties
     
+    // Set global color for all spinners
+    public static var spinnerColor: UIColor?
+    
     // Private reference to a proxy UIImageView holding images for use in custom spinner.
     private static var animationImage: UIImageView?
     
@@ -31,7 +34,11 @@ public class SpinnerView: UIActivityIndicatorView {
     
     public init(style: UIActivityIndicatorViewStyle = .white, color: UIColor? = nil) {
         super.init(activityIndicatorStyle: style)
-        self.color = color
+        if let color = color {
+            self.color = color
+        } else if let color = SpinnerView.spinnerColor {
+            self.color = color
+        }
     }
     
     required public init(coder: NSCoder) {
