@@ -40,7 +40,7 @@ github "nodes-ios/Spinner" ~> 2.0
 SpinnerView has global properties that can be set for convinence to ensure that all spinners look the same. Set these up at app launch if needed.
 
 ```swift
-SpinnerView.spinnerColor: = .red
+SpinnerView.spinnerColor = .red
 SpinnerView.indicatorStyle = .white
 SpinnerView.dimViewBackgroundColor = .black
 ```
