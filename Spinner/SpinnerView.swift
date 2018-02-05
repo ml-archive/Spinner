@@ -327,10 +327,7 @@ extension SpinnerView {
     @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance show method")
     public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color: UIColor? = nil, disablesUserInteraction: Bool = true, dimBackground: Bool = false) -> SpinnerView {
         let center = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
-        
-        
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
-        
+      
         let spinnerView = SpinnerView(style: style)
         spinnerView.userInteractionEnabledAtReception = view.isUserInteractionEnabled
         
@@ -345,24 +342,24 @@ extension SpinnerView {
         }
         
         if disablesUserInteraction {
-            activityIndicator.frame = view.frame
+            spinnerView.frame = view.frame
             view.isUserInteractionEnabled = false
         }
         
-        activityIndicator.color = color
-        activityIndicator.center = center
-        activityIndicator.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
+        spinnerView.color = color
+        spinnerView.center = center
+        spinnerView.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
         
         
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
+        spinnerView.startAnimating()
+        view.addSubview(spinnerView)
         
         if dimBackground {
             spinnerView.dimView = UIView(frame: view.bounds)
             if let dimView = spinnerView.dimView {
                 dimView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
                 dimView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                view.insertSubview(dimView, belowSubview: activityIndicator)
+                view.insertSubview(dimView, belowSubview: spinnerView)
             }
         }
         
