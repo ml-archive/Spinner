@@ -27,12 +27,12 @@ public class SpinnerView: NSObject, Spinner {
     
     //TODO: Add an option to offset the indicator in the view or button
     
-    fileprivate var controlTitleColors: [ControlTitleColor]?
-    fileprivate var controlTitleAttributes: [ControlTitleAttributes]?
-    fileprivate var activityIndicator: UIActivityIndicatorView?
-    fileprivate var imageView: UIImageView?
-    fileprivate var userInteractionEnabledAtReception = true
-    fileprivate var dimView: UIView?
+    private var controlTitleColors: [ControlTitleColor]?
+    private var controlTitleAttributes: [ControlTitleAttributes]?
+    private var activityIndicator: UIActivityIndicatorView?
+    private var imageView: UIImageView?
+    private var userInteractionEnabledAtReception = true
+    private var dimView: UIView?
     
     /**
      To display the indicator centered in a view.
@@ -252,10 +252,10 @@ extension UIImageView: Spinner {
 
 // MARK: - Private -
 
-fileprivate extension UIButton {
+private extension UIButton {
     
     // Extension to return an array of every color for every button state
-    fileprivate func allTitleColors() -> [ControlTitleColor] {
+    func allTitleColors() -> [ControlTitleColor] {
         var colors: [ControlTitleColor] = [
             (UIControlState(), titleColor(for: UIControlState())),
             (.highlighted, titleColor(for: .highlighted)),
@@ -272,7 +272,7 @@ fileprivate extension UIButton {
         return colors
     }
     
-    fileprivate func allTitleAttributes() -> [ControlTitleAttributes] {
+    func allTitleAttributes() -> [ControlTitleAttributes] {
         var attributes: [ControlTitleAttributes] = [
             (UIControlState(), attributedTitle(for: UIControlState())),
             (.highlighted, attributedTitle(for: .highlighted)),
@@ -294,7 +294,7 @@ fileprivate extension UIButton {
      
      - Parameter colors: An array of ControlTitleColor each containing a UIControlState and a UIColor
      */
-    fileprivate func restore(titleColors colors: [ControlTitleColor]?, attributedStrings: [ControlTitleAttributes]?) {
+    func restore(titleColors colors: [ControlTitleColor]?, attributedStrings: [ControlTitleAttributes]?) {
         if colors != nil {
             for color in colors! {
                 if titleColor(for: color.0) == .clear {
@@ -313,14 +313,14 @@ fileprivate extension UIButton {
     /**
      Sets all the the buttons title colors to clear
      */
-    fileprivate func removeAllTitleColors() {
+    func removeAllTitleColors() {
         let clearedColors = allTitleColors().map({ return ($0.0, UIColor.clear) })
         for color in clearedColors {
             setTitleColor(color.1, for: color.0)
         }
     }
     
-    fileprivate func removeAllAttributedStrings() {
+    func removeAllAttributedStrings() {
         self.setAttributedTitle(nil, for: .normal)
         self.setAttributedTitle(nil, for: .highlighted)
         self.setAttributedTitle(nil, for: .disabled)
