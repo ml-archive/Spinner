@@ -25,7 +25,7 @@ public class SpinnerView: UIActivityIndicatorView {
     // Set dim view background color for all spinners
     public static var dimViewBackgroundColor: UIColor?
     
-    // Reference to a proxy UIImageView holding images for use in custom spinner.
+    // Reference to a proxy UIImageView holding images for use in custom spinner
     private static var animationImage: UIImageView?
     
     // MARK: - Properties
@@ -49,14 +49,20 @@ public class SpinnerView: UIActivityIndicatorView {
     /// - parameter color: The tint color of the spinner. Default is nil (white).
     /// - parameter dimViewBackgroundColor: A UIColor that specifies the dimView background color. Default is nil (darkGray/black).
     public init(style: UIActivityIndicatorViewStyle? = nil, color: UIColor? = nil, dimViewBackgroundColor: UIColor? = nil) {
-        self.spinnerColor = color
         self.indicatorStyle = style
+        self.spinnerColor = color
         self.dimViewBackgroundColor = dimViewBackgroundColor
         super.init(activityIndicatorStyle: style ?? .white)
     }
     
     required public init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Deinit
+    
+    deinit {
+        print("Deinit SpinnerView")
     }
 }
 
@@ -83,11 +89,11 @@ public extension SpinnerView {
         }
         
         // Set style
-        // First check for instance style. If nil check for global style. Otherwise defaults to white
+        // First check for instance style, if nil check for global style. Otherwise default to white
         activityIndicatorViewStyle = indicatorStyle ?? SpinnerView.indicatorStyle ?? .white
         
         // Set color
-        // First check for instance color. If nil check for global style. Otherwise defaults to white
+        // First check for instance color, if nil check for global style. Otherwise defaults to standard color
         color = spinnerColor ?? SpinnerView.spinnerColor
         
         // Set position
@@ -139,7 +145,7 @@ public extension SpinnerView {
     /// - parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false.
     func showCustom(in view: UIView, disablesUserInteraction: Bool = true, dimBackground: Bool = false) {
         
-        // If the `animationImage` has not been created via `setCustomImages(_:duration:)`, it will default to the normal `UIActivityIndicatorView` and will not use a custom `UIImageView`.
+        // If the `animationImage` has not been created via `setCustomImages(_:duration:)`, it will default to regular style
         guard let image = SpinnerView.animationImage else {
             show(in: view, disablesUserInteraction: disablesUserInteraction, dimBackground: dimBackground)
             return
