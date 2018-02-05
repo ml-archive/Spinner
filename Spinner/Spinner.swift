@@ -9,8 +9,8 @@
 
 import UIKit
 
-public typealias ControlTitleColor = (UIControlState, UIColor?)
-public typealias ControlTitleAttributes = (UIControlState, NSAttributedString?)
+typealias ControlTitleColor = (UIControlState, UIColor?)
+typealias ControlTitleAttributes = (UIControlState, NSAttributedString?)
 
 public class SpinnerView: UIActivityIndicatorView {
     
@@ -18,6 +18,12 @@ public class SpinnerView: UIActivityIndicatorView {
     
     // Set global color for all spinners
     public static var spinnerColor: UIColor?
+    
+    // Set global indicator style for all spinners
+    public static var indicatorStyle: UIActivityIndicatorViewStyle?
+    
+    // Set global dim view background color for all spinners
+    public static var dimViewBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
     
     // Private reference to a proxy UIImageView holding images for use in custom spinner.
     private static var animationImage: UIImageView?
@@ -32,12 +38,18 @@ public class SpinnerView: UIActivityIndicatorView {
     
     // MARK: - Init
     
+    /// Init
+    ///
+    /// - parameter style: The style of the indicator. Default is white.
+    /// - parameter color: A UIColor that specifies the tint of the spinner. Default is nil which uses default spinner color (white).
     public init(style: UIActivityIndicatorViewStyle = .white, color: UIColor? = nil) {
-        super.init(activityIndicatorStyle: style)
+        super.init(activityIndicatorStyle: SpinnerView.indicatorStyle ?? style)
         
-        if let color = SpinnerView.spinnerColor {
+        // Check if we set color for spinner
+        if let color = color {
             self.color = color
-        } else if let color = color {
+        // Otherwise check if we set global color
+        } else if let color = SpinnerView.spinnerColor {
             self.color = color
         }
     }
@@ -54,14 +66,11 @@ extension SpinnerView {
     /// To display the indicator centered in a view.
     ///
     /// - parameter view: The view to display the indicator in.
-    /// - parameter style: A constant that specifies the style of the object to be created.
-    /// - parameter color: A UIColor that specifies the tint of the spinner
-    /// - parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown. Default is true
     /// - parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false
-    /// - returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
+    /// - parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown. Default is true.
     public func show(in view: UIView, dimBackground: Bool = false, disablesUserInteraction: Bool = true) {
         
-        //In case the previous spinner wasn't dismissed
+        // In case the previous spinner wasn't dismissed
         dismiss()
         
         // Set user interaction
@@ -75,6 +84,8 @@ extension SpinnerView {
         // Set position
         let center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
         self.center = center
+        
+        // Set autoresizing mask
         autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
         
         // Start animation
@@ -86,7 +97,7 @@ extension SpinnerView {
         // Check if backgrounds needs to be dimmed
         guard dimBackground else { return }
         dimView = UIView(frame: view.bounds)
-        dimView?.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+        dimView?.backgroundColor = SpinnerView.dimViewBackgroundColor
         dimView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.insertSubview(dimView!, belowSubview: self)
     }
@@ -94,10 +105,7 @@ extension SpinnerView {
     /// To display the indicator centered in a button. The button's titleLabel colors will be set to clear color while the indicator is shown.
     ///
     /// - parameter button: The button to display the indicator in.
-    /// - parameter style: A constant that specifies the style of the object to be created.
-    /// - parameter color: A UIColor that specifies the tint of the spinner
-    /// - parameter disablesUserInteraction: A boolean that specifies if the user interaction on the button should be disabled while the spinner is shown. Default is true
-    /// - returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
+    /// - parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown. Default is true
     public func show(in button: UIButton, disablesUserInteraction: Bool = true) {
         show(in: button, dimBackground: false, disablesUserInteraction: disablesUserInteraction)
         controlTitleColors = button.allTitleColors
@@ -120,10 +128,11 @@ extension SpinnerView {
     ///
     /// - parameter view: The view to display the indicator in.
     /// - parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false.
-    /// - returns: A reference to the `Spinner` that was created, so that it can be dismissed as needed.
-    public func showCustom(in view: UIView, dimBackground: Bool = false) {
+    public func showCustom(in view: UIView, dimBackground: Bool = false, disablesUserInteraction: Bool = true) {
+        
+        // If the `animationImage` has not been created via `setCustomImages(_:duration:)`, it will default to the normal `UIActivityIndicatorView` and will not use a custom `UIImageView`.
         guard let image = SpinnerView.animationImage else {
-            show(in: view)
+            show(in: view, dimBackground: dimBackground, disablesUserInteraction: disablesUserInteraction)
             return
         }
         
@@ -144,7 +153,7 @@ extension SpinnerView {
         // Check if background needs to be dimmed
         guard dimBackground else { return }
         dimView = UIView(frame: view.bounds)
-        dimView?.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+        dimView?.backgroundColor = SpinnerView.dimViewBackgroundColor
         dimView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.insertSubview(dimView!, belowSubview: imageView)
     }
@@ -152,9 +161,9 @@ extension SpinnerView {
     /// To display the indicator centered in a button. The button's titleLabel colors will be set to clear color while the indicator is shown.
     ///
     /// - parameter button: The button to display the indicator in.
-    /// - returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed.
+    /// - parameter disablesUserInteraction. Disable the button if needed. Default is true.
     public func showCustom(in button: UIButton, disablesUserInteraction: Bool = true) {
-        showCustom(in: button)
+        showCustom(in: button, dimBackground: false, disablesUserInteraction: disablesUserInteraction)
         button.isUserInteractionEnabled = !disablesUserInteraction
         controlTitleColors = button.allTitleColors
         button.removeAllTitleColors()
@@ -190,7 +199,6 @@ extension SpinnerView {
 
 // MARK: - Setup Custom Images
 
-// Extension of SpinnerView that supports an animated UIImageView as a custom activity indicator
 public extension SpinnerView  {
     
     //// Used to create the custom indicator. Call this once (on app open, for example) and it will be set for the lifetime of the app.
@@ -199,7 +207,7 @@ public extension SpinnerView  {
     ///
     /// - parameter images: An array containing the UIImages to use for the animation.
     /// - parameter duration: The animation duration.
-    public static func set(customImages images: [UIImage], duration: TimeInterval) {
+    public static func set(withCustomImages images: [UIImage], duration: TimeInterval) {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: images[0].size.width, height: images[0].size.height))
         image.animationImages = images
         image.animationDuration = duration
@@ -261,7 +269,8 @@ private extension UIButton {
     
     /// Function to set the buttons title colors to specific button states passed in the array parameter
     ///
-    /// - parameter colors: An array of ControlTitleColor each containing a UIControlState and a UIColor
+    /// - parameter colors: An array of ControlTitleColor each containing a UIControlState and a UIColor.
+    /// - parameter attributedStrings: An array of ControlTitleAttributes each containing a UIControlState and a NSAttributedString.
     func restore(titleColors colors: [ControlTitleColor]?, attributedStrings: [ControlTitleAttributes]?) {
         colors?.forEach {
             guard titleColor(for: $0.0) == .clear else { return }
@@ -312,7 +321,7 @@ extension SpinnerView {
         let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
         
         
-        let activityIndicator     = UIActivityIndicatorView(activityIndicatorStyle: style)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
         
         let spinnerView = SpinnerView(style: style)
         spinnerView.userInteractionEnabledAtReception = view.isUserInteractionEnabled
