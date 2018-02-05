@@ -34,9 +34,10 @@ public class SpinnerView: UIActivityIndicatorView {
     
     public init(style: UIActivityIndicatorViewStyle = .white, color: UIColor? = nil) {
         super.init(activityIndicatorStyle: style)
-        if let color = color {
+        
+        if let color = SpinnerView.spinnerColor {
             self.color = color
-        } else if let color = SpinnerView.spinnerColor {
+        } else if let color = color {
             self.color = color
         }
     }
