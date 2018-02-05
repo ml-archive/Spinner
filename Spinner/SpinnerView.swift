@@ -79,7 +79,7 @@ extension SpinnerView {
         }
         
         // Set style
-        // First check for instance style. If nil check for global style. Otherwise set to white
+        // First check for instance style. If nil check for global style. Otherwise defaults to white
         self.activityIndicatorViewStyle = indicatorStyle ?? SpinnerView.indicatorStyle ?? .white
         
         // Set color
@@ -87,8 +87,7 @@ extension SpinnerView {
         self.color = spinnerColor ?? SpinnerView.spinnerColor
         
         // Set position
-        let center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
-        self.center = center
+        center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
         
         // Set autoresizing mask
         autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
