@@ -1,5 +1,5 @@
 //
-//  Spinner.swift
+//  SpinnerView.swift
 //  Spinner
 //
 //  Created by Chris Combs on 25/01/16.
@@ -30,6 +30,9 @@ public class SpinnerView: UIActivityIndicatorView {
     
     // MARK: - Properties
     
+    private let spinnerColor: UIColor?
+    private let indicatorStyle: UIActivityIndicatorViewStyle?
+    
     private var controlTitleColors: [ControlTitleColor]?
     private var controlTitleAttributes: [ControlTitleAttributes]?
     private var imageView: UIImageView?
@@ -40,12 +43,12 @@ public class SpinnerView: UIActivityIndicatorView {
     
     /// Init
     ///
-    /// - parameter style: The style of the indicator. Default is white.
-    /// - parameter color: A UIColor that specifies the tint of the spinner. Default is nil which uses default spinner color (white).
-    public init(style: UIActivityIndicatorViewStyle = .white, color: UIColor? = nil) {
-        super.init(activityIndicatorStyle: SpinnerView.indicatorStyle ?? style)
-        
-        self.color = color ?? SpinnerView.spinnerColor
+    /// - parameter style: The style of the indicator. Default is nil (white).
+    /// - parameter color: A UIColor that specifies the tint of the spinner. Default is nil (white).
+    public init(style: UIActivityIndicatorViewStyle? = nil, color: UIColor? = nil) {
+        self.spinnerColor = color
+        self.indicatorStyle = style
+        super.init(activityIndicatorStyle: style ?? .white)
     }
     
     required public init(coder: NSCoder) {
@@ -74,6 +77,14 @@ extension SpinnerView {
             frame = view.frame
             view.isUserInteractionEnabled = false
         }
+        
+        // Set style
+        // First check for instance style. If nil check for global style. Otherwise set to white
+        self.activityIndicatorViewStyle = indicatorStyle ?? SpinnerView.indicatorStyle ?? .white
+        
+        // Set color
+        // First check for instance color. If nil check for global style. Otherwise defaults to white
+        self.color = spinnerColor ?? SpinnerView.spinnerColor
         
         // Set position
         let center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
