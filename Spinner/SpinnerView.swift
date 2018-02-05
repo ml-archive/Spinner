@@ -47,7 +47,7 @@ public class SpinnerView: UIActivityIndicatorView {
     ///
     /// - parameter style: The style of the indicator. Default is nil (white).
     /// - parameter color: The tint color of the spinner. Default is nil (white).
-    /// - parameter dimViewBackgroundColor: A UIColor that specifies the dimView background color. Default is nil (darkGray/black).
+    /// - parameter dimViewBackgroundColor: The dimView background color. Default is nil (black).
     public init(style: UIActivityIndicatorViewStyle? = nil, color: UIColor? = nil, dimViewBackgroundColor: UIColor? = nil) {
         self.indicatorStyle = style
         self.spinnerColor = color
