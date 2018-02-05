@@ -45,13 +45,7 @@ public class SpinnerView: UIActivityIndicatorView {
     public init(style: UIActivityIndicatorViewStyle = .white, color: UIColor? = nil) {
         super.init(activityIndicatorStyle: SpinnerView.indicatorStyle ?? style)
         
-        // Check if we set color for spinner
-        if let color = color {
-            self.color = color
-        // Otherwise check if we set global color
-        } else if let color = SpinnerView.spinnerColor {
-            self.color = color
-        }
+        self.color = color ?? SpinnerView.spinnerColor
     }
     
     required public init(coder: NSCoder) {
@@ -316,9 +310,9 @@ extension SpinnerView {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    @available(*, deprecated, message: "This method will be removed in a future release, please use the new show instance method")
+    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance show method")
     public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color: UIColor? = nil, disablesUserInteraction: Bool = true, dimBackground: Bool = false) -> SpinnerView {
-        let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
+        let center = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
         
         
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
@@ -372,7 +366,7 @@ extension SpinnerView {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    @available(*, deprecated, message: "This method will be removed in a future release, please use the new show instance method")
+    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance show method")
     public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> SpinnerView {
         
         let spinnerView = showSpinner(inView: button, style: style, color: color)
@@ -400,7 +394,7 @@ extension SpinnerView {
      
      - Returns: A reference to the `Spinner` that was created, so that it can be dismissed as needed.
      */
-    @available(*, deprecated, message: "This method will be removed in a future release, please use the new showCustom instance method")
+    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance showCustom method")
     public static func showCustomSpinner(inView view: UIView, dimBackground: Bool = false) -> SpinnerView {
         if let image = SpinnerView.animationImage {
             
@@ -447,7 +441,7 @@ extension SpinnerView {
      
      - Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
      */
-    @available(*, deprecated, message: "This method will be removed in a future release, please use the new showCustom instance method")
+    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance showCustom method")
     public static func showCustomSpinner(inButton button: UIButton, disablesUserInteraction:Bool = true) -> SpinnerView {
         let spinnerView = showCustomSpinner(inView: button)
         button.isUserInteractionEnabled = !disablesUserInteraction
