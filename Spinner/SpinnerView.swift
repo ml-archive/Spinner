@@ -16,14 +16,14 @@ public class SpinnerView: UIActivityIndicatorView {
     
     // MARK: - Static Properties
     
-    // Set global color for all spinners
+    // Set color for all spinners
     public static var spinnerColor: UIColor?
     
-    // Set global indicator style for all spinners
+    // Set indicator style for all spinners
     public static var indicatorStyle: UIActivityIndicatorViewStyle?
     
-    // Set global dim view background color for all spinners
-    public static var dimViewBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+    // Set dim view background color for all spinners
+    public static var dimViewBackgroundColor: UIColor?
     
     // Private reference to a proxy UIImageView holding images for use in custom spinner.
     private static var animationImage: UIImageView?
@@ -32,12 +32,14 @@ public class SpinnerView: UIActivityIndicatorView {
     
     private let spinnerColor: UIColor?
     private let indicatorStyle: UIActivityIndicatorViewStyle?
+    private let dimViewBackgroundColor: UIColor?
     
     private var controlTitleColors: [ControlTitleColor]?
     private var controlTitleAttributes: [ControlTitleAttributes]?
     private var imageView: UIImageView?
     private var userInteractionEnabledAtReception = true
     private var dimView: UIView?
+    private let dimViewDefaultBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
     
     // MARK: - Init
     
@@ -45,9 +47,11 @@ public class SpinnerView: UIActivityIndicatorView {
     ///
     /// - parameter style: The style of the indicator. Default is nil (white).
     /// - parameter color: A UIColor that specifies the tint of the spinner. Default is nil (white).
-    public init(style: UIActivityIndicatorViewStyle? = nil, color: UIColor? = nil) {
+    /// - parameter dimViewBackgroundColor: A UIColor that specifies the dimView background color. Default is nil (darkGray/black).
+    public init(style: UIActivityIndicatorViewStyle? = nil, color: UIColor? = nil, dimViewBackgroundColor: UIColor? = nil) {
         self.spinnerColor = color
         self.indicatorStyle = style
+        self.dimViewBackgroundColor = dimViewBackgroundColor
         super.init(activityIndicatorStyle: style ?? .white)
     }
     
@@ -80,11 +84,11 @@ extension SpinnerView {
         
         // Set style
         // First check for instance style. If nil check for global style. Otherwise defaults to white
-        self.activityIndicatorViewStyle = indicatorStyle ?? SpinnerView.indicatorStyle ?? .white
+        activityIndicatorViewStyle = indicatorStyle ?? SpinnerView.indicatorStyle ?? .white
         
         // Set color
         // First check for instance color. If nil check for global style. Otherwise defaults to white
-        self.color = spinnerColor ?? SpinnerView.spinnerColor
+        color = spinnerColor ?? SpinnerView.spinnerColor
         
         // Set position
         center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
@@ -101,7 +105,7 @@ extension SpinnerView {
         // Check if backgrounds needs to be dimmed
         guard dimBackground else { return }
         dimView = UIView(frame: view.bounds)
-        dimView?.backgroundColor = SpinnerView.dimViewBackgroundColor
+        dimView?.backgroundColor = dimViewBackgroundColor ?? SpinnerView.dimViewBackgroundColor ?? dimViewDefaultBackgroundColor
         dimView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.insertSubview(dimView!, belowSubview: self)
     }
@@ -157,7 +161,7 @@ extension SpinnerView {
         // Check if background needs to be dimmed
         guard dimBackground else { return }
         dimView = UIView(frame: view.bounds)
-        dimView?.backgroundColor = SpinnerView.dimViewBackgroundColor
+        dimView?.backgroundColor = dimViewBackgroundColor ?? SpinnerView.dimViewBackgroundColor ?? dimViewDefaultBackgroundColor
         dimView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.insertSubview(dimView!, belowSubview: imageView)
     }
