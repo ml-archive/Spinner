@@ -25,7 +25,7 @@ public class SpinnerView: UIActivityIndicatorView {
     // Set dim view background color for all spinners
     public static var dimViewBackgroundColor: UIColor?
     
-    // Private reference to a proxy UIImageView holding images for use in custom spinner.
+    // Reference to a proxy UIImageView holding images for use in custom spinner.
     private static var animationImage: UIImageView?
     
     // MARK: - Properties
