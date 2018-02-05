@@ -62,14 +62,14 @@ public class SpinnerView: UIActivityIndicatorView {
 
 // MARK: - Show
 
-extension SpinnerView {
+public extension SpinnerView {
     
     /// To display the indicator centered in a view.
     ///
     /// - parameter view: The view to display the indicator in.
     /// - parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false
     /// - parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown. Default is true.
-    public func show(in view: UIView, dimBackground: Bool = false, disablesUserInteraction: Bool = true) {
+    func show(in view: UIView, dimBackground: Bool = false, disablesUserInteraction: Bool = true) {
         
         // In case the previous spinner wasn't dismissed
         dismiss()
@@ -114,7 +114,7 @@ extension SpinnerView {
     ///
     /// - parameter button: The button to display the indicator in.
     /// - parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown. Default is true
-    public func show(in button: UIButton, disablesUserInteraction: Bool = true) {
+    func show(in button: UIButton, disablesUserInteraction: Bool = true) {
         show(in: button, dimBackground: false, disablesUserInteraction: disablesUserInteraction)
         controlTitleColors = button.allTitleColors
         button.removeAllTitleColors()
@@ -128,7 +128,7 @@ extension SpinnerView {
 
 // MARK: - Show Custom
 
-extension SpinnerView {
+public extension SpinnerView {
     
     //// To display the indicator centered in a view.
     ///
@@ -136,7 +136,7 @@ extension SpinnerView {
     ///
     /// - parameter view: The view to display the indicator in.
     /// - parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false.
-    public func showCustom(in view: UIView, dimBackground: Bool = false, disablesUserInteraction: Bool = true) {
+    func showCustom(in view: UIView, dimBackground: Bool = false, disablesUserInteraction: Bool = true) {
         
         // If the `animationImage` has not been created via `setCustomImages(_:duration:)`, it will default to the normal `UIActivityIndicatorView` and will not use a custom `UIImageView`.
         guard let image = SpinnerView.animationImage else {
@@ -170,7 +170,7 @@ extension SpinnerView {
     ///
     /// - parameter button: The button to display the indicator in.
     /// - parameter disablesUserInteraction. Disable the button if needed. Default is true.
-    public func showCustom(in button: UIButton, disablesUserInteraction: Bool = true) {
+    func showCustom(in button: UIButton, disablesUserInteraction: Bool = true) {
         showCustom(in: button, dimBackground: false, disablesUserInteraction: disablesUserInteraction)
         button.isUserInteractionEnabled = !disablesUserInteraction
         controlTitleColors = button.allTitleColors
@@ -182,11 +182,11 @@ extension SpinnerView {
 
 // MARK: - Dismiss
 
-extension SpinnerView {
+public extension SpinnerView {
     
     /// To dismiss the currently displayed indicator. The views interaction will then be enabled depending on the parameter boolean
     /// If shown in a button the titles text will become visible
-    public func dismiss() {
+    func dismiss() {
         if let superView = superview {
             superView.isUserInteractionEnabled = userInteractionEnabledAtReception
             let button = superView as? UIButton
