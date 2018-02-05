@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UIKit
 
 public typealias ControlTitleColor = (UIControlState, UIColor?)
 public typealias ControlTitleAttributes = (UIControlState, NSAttributedString?)
@@ -23,7 +22,6 @@ public protocol Spinner {
      */
     func dismiss()
 }
-
 
 public class SpinnerView: UIActivityIndicatorView {
     
@@ -56,8 +54,16 @@ public class SpinnerView: UIActivityIndicatorView {
 
 extension SpinnerView {
     
+    /// To display the indicator centered in a view.
+    ///
+    /// - parameter view: The view to display the indicator in.
+    /// - parameter style: A constant that specifies the style of the object to be created.
+    /// - parameter color: A UIColor that specifies the tint of the spinner
+    /// - parameter disablesUserInteraction: A boolean that specifies if the user interaction on the view should be disabled while the spinner is shown. Default is true
+    /// - parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false
+    /// - returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
     public func show(in view: UIView, dimBackground: Bool = false, disablesUserInteraction: Bool = true) {
-        //remove()
+        dismiss()
         
         // User interaction
         userInteractionEnabledAtReception = view.isUserInteractionEnabled
@@ -87,6 +93,13 @@ extension SpinnerView {
         }
     }
     
+    /// To display the indicator centered in a button. The button's titleLabel colors will be set to clear color while the indicator is shown.
+    ///
+    /// - parameter button: The button to display the indicator in.
+    /// - parameter style: A constant that specifies the style of the object to be created.
+    /// - parameter color: A UIColor that specifies the tint of the spinner
+    /// - parameter disablesUserInteraction: A boolean that specifies if the user interaction on the button should be disabled while the spinner is shown. Default is true
+    /// - returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
     public func show(in button: UIButton, disablesUserInteraction: Bool = true) {
         show(in: button, dimBackground: false, disablesUserInteraction: disablesUserInteraction)
         controlTitleColors = button.allTitleColors
@@ -103,18 +116,13 @@ extension SpinnerView {
 
 extension SpinnerView {
     
-    /**
-     To display the indicator centered in a view.
-     
-     - Note: If the `animationImage` has not been created via `setCustomImages(_:duration:)`,
-     it will default to the normal `UIActivityIndicatorView` and will not use
-     a custom `UIImageView`.
-     
-     - Parameter view: The view to display the indicator in.
-     - Parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false
-     
-     - Returns: A reference to the `Spinner` that was created, so that it can be dismissed as needed.
-     */
+    //// To display the indicator centered in a view.
+    ///
+    /// - Note: If the `animationImage` has not been created via `setCustomImages(_:duration:)`, it will default to the normal `UIActivityIndicatorView` and will not use a custom `UIImageView`.
+    ///
+    /// - parameter view: The view to display the indicator in.
+    /// - parameter dimBackground: A Boolean specifying if background should be dimmed while showing spinner. Default is false.
+    /// - returns: A reference to the `Spinner` that was created, so that it can be dismissed as needed.
     public func showCustom(in view: UIView, dimBackground: Bool = false) {
         guard let image = SpinnerView.animationImage else {
             show(in: view)
@@ -122,7 +130,7 @@ extension SpinnerView {
         }
         
         //In case the previous spinner wasn't dismissed
-        //remove()
+        dismiss()
         
         // Create image view
         let imageView = UIImageView(frame: view.bounds)
@@ -143,14 +151,10 @@ extension SpinnerView {
         view.insertSubview(dimView!, belowSubview: imageView)
     }
     
-    /**
-     To display the indicator centered in a button.
-     The button's titleLabel colors will be set to clear color while the indicator is shown.
-     
-     - Parameter button: The button to display the indicator in.
-     
-     - Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
-     */
+    /// To display the indicator centered in a button. The button's titleLabel colors will be set to clear color while the indicator is shown.
+    ///
+    /// - parameter button: The button to display the indicator in.
+    /// - returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed.
     public func showCustom(in button: UIButton, disablesUserInteraction: Bool = true) {
         showCustom(in: button)
         button.isUserInteractionEnabled = !disablesUserInteraction
@@ -165,23 +169,18 @@ extension SpinnerView {
 
 extension SpinnerView: Spinner {
     
-    /**
-     To dismiss the currently displayed indicator.
-     The views interaction will then be enabled depending on the parameter boolean
-     If shown in a button the titles text will become visible
-     */
+    /// To dismiss the currently displayed indicator. The views interaction will then be enabled depending on the parameter boolean
+    /// If shown in a button the titles text will become visible
     public func dismiss() {
         if let superView = superview {
             superView.isUserInteractionEnabled = self.userInteractionEnabledAtReception
-            if let button = superView as? UIButton {
-                button.restore(titleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
-            }
+            let button = superView as? UIButton
+            button?.restore(titleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
         }
         else if let superView = imageView?.superview {
             superView.isUserInteractionEnabled = self.userInteractionEnabledAtReception
-            if let button = superView as? UIButton {
-                button.restore(titleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
-            }
+            let button = superView as? UIButton
+            button?.restore(titleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
         }
         
         stopAnimating()
@@ -213,18 +212,6 @@ public extension SpinnerView  {
         animationImage = image
     }
 }
-
-//// MARK: - Spinner Conformance -
-//
-//// Extension to allow UIActivityIndicatorView to be dismissed.
-//extension UIActivityIndicatorView: Spinner {
-//
-//    // Called when the activity indicator should be removed.
-//    public func dismiss() {
-//        stopAnimating()
-//        removeFromSuperview()
-//    }
-//}
 
 // MARK: - UI Image View Extension
 
@@ -278,11 +265,9 @@ private extension UIButton {
         return attributes
     }
     
-    /**
-     Function to set the buttons title colors to specific button states passed in the array parameter
-     
-     - Parameter colors: An array of ControlTitleColor each containing a UIControlState and a UIColor
-     */
+    /// Function to set the buttons title colors to specific button states passed in the array parameter
+    ///
+    /// - parameter colors: An array of ControlTitleColor each containing a UIControlState and a UIColor
     func restore(titleColors colors: [ControlTitleColor]?, attributedStrings: [ControlTitleAttributes]?) {
         if let colors = colors {
             colors.forEach {
@@ -298,9 +283,7 @@ private extension UIButton {
         }
     }
     
-    /**
-     Sets all the the buttons title colors to clear
-     */
+    /// Sets all the the buttons title colors to clear
     func removeAllTitleColors() {
         let clearedColors = allTitleColors.map({ return ($0.0, UIColor.clear) })
         clearedColors.forEach {
@@ -308,6 +291,7 @@ private extension UIButton {
         }
     }
     
+    /// Remove all attributed strings
     func removeAllAttributedStrings() {
         setAttributedTitle(nil, for: .normal)
         setAttributedTitle(nil, for: .highlighted)
@@ -335,7 +319,6 @@ extension SpinnerView {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    
     @available(*, deprecated, message: "This method is deprecated and will be removed in a future release, please use the new show instance method")
     public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color: UIColor? = nil, disablesUserInteraction: Bool = true, dimBackground: Bool = false) -> SpinnerView {
         let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
@@ -374,7 +357,6 @@ extension SpinnerView {
                 view.insertSubview(dimView, belowSubview: activityIndicator)
             }
         }
-        //spinnerView.activityIndicator = activityIndicator
         
         return spinnerView
     }
