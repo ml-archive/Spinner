@@ -82,7 +82,7 @@ spinner.dismiss()
 ### Custom spinner
 If you would rather use something more custom than the UIActivityIndicator, you can set an array of images to the Spinner with a duration time it takes to animate through them and display it in a view.
 
-First setup SpinnerView with your array of imags e.g AppDelegate
+First setup SpinnerView with your array of images e.g AppDelegate
 
 ```swift
 let imagesArray = [...]
@@ -100,6 +100,7 @@ You can also display the spinner in buttons, simply add the spinner to any UIBut
 
 ```swift
 spinner.show(in: button, disablesUserInteraction: false)
+spinner.showCustom(in: button, disablesUserInteraction: false)
 ```
 
 ## Credits
