@@ -37,7 +37,7 @@ github "nodes-ios/Spinner" ~> 2.0
 
 ### Global Settings
 
-SpinnerView has global properties that can be set for convinence to ensure that all spinners look the same. Call these at app launch if needed.
+SpinnerView has global properties that can be set for convinience to ensure that all spinners look the same. Call these at app launch if needed.
 
 ```swift
 SpinnerView.spinnerColor = .red
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
 }
 ```
 
-Spinner also gives you the option to customise the UIActivityIndicator Style, color and dimView backgroundColor.
+Spinner also gives you the option to customise the UIActivityIndicator Style, color and dimView backgroundColor for each individual spinner instance. These will override any Global settings.
 
 ```swift
 let spinner = SpinnerView(style: .white, color: .red, dimViewBackgroundColor: .black)
