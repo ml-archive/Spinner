@@ -20,7 +20,7 @@ public class SpinnerView: UIActivityIndicatorView {
     public static var spinnerColor: UIColor?
     
     // Set indicator style for all spinners
-    public static var indicatorStyle: UIActivityIndicatorViewStyle?
+    public static var style: UIActivityIndicatorViewStyle?
     
     // Set dim view background color for all spinners
     public static var dimViewBackgroundColor: UIColor?
@@ -31,7 +31,7 @@ public class SpinnerView: UIActivityIndicatorView {
     // MARK: - Properties
     
     private let spinnerColor: UIColor?
-    private let indicatorStyle: UIActivityIndicatorViewStyle?
+    private let style: UIActivityIndicatorViewStyle?
     private let dimViewBackgroundColor: UIColor?
     
     private var controlTitleColors: [ControlTitleColor]?
@@ -45,11 +45,13 @@ public class SpinnerView: UIActivityIndicatorView {
     
     /// Init
     ///
+    /// Note: Setting these values will override the global properties to allow customisation on specific views if needed.
+    ///
     /// - parameter style: The style of the indicator. Default is nil (white).
     /// - parameter color: The tint color of the spinner. Default is nil (white).
     /// - parameter dimViewBackgroundColor: The dimView background color. Default is nil (black).
     public init(style: UIActivityIndicatorViewStyle? = nil, color: UIColor? = nil, dimViewBackgroundColor: UIColor? = nil) {
-        self.indicatorStyle = style
+        self.style = style
         self.spinnerColor = color
         self.dimViewBackgroundColor = dimViewBackgroundColor
         super.init(activityIndicatorStyle: style ?? .white)
@@ -57,12 +59,6 @@ public class SpinnerView: UIActivityIndicatorView {
     
     required public init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Deinit
-    
-    deinit {
-        print("Deinit SpinnerView")
     }
     
     // MARK: - Show
@@ -87,10 +83,10 @@ public class SpinnerView: UIActivityIndicatorView {
         
         // Set style
         // First check for instance style, if nil check for global style. Otherwise default to white
-        activityIndicatorViewStyle = indicatorStyle ?? SpinnerView.indicatorStyle ?? .white
+        activityIndicatorViewStyle = style ?? SpinnerView.style ?? .white
         
         // Set color
-        // First check for instance color, if nil check for global style. Otherwise defaults to standard color
+        // First check for instance color, if nil check for global style. Otherwise defaults to standard color (white)
         color = spinnerColor ?? SpinnerView.spinnerColor
         
         // Set position
@@ -127,9 +123,9 @@ public class SpinnerView: UIActivityIndicatorView {
         guard disablesUserInteraction else { return }
         button.isUserInteractionEnabled = false
     }
-
+    
     // MARK: - Show Custom
-
+    
     //// To display the indicator centered in a view.
     ///
     /// - Note: If the `animationImage` has not been created via `setCustomImages(_:duration:)`, it will default to the normal `UIActivityIndicatorView` and will not use a custom `UIImageView`.
@@ -179,21 +175,21 @@ public class SpinnerView: UIActivityIndicatorView {
         controlTitleAttributes = button.allTitleAttributes
         button.removeAllAttributedStrings()
     }
-
+    
     // MARK: - Dismiss
-
+    
     /// To dismiss the currently displayed indicator. The views interaction will then be enabled depending on the parameter boolean
     /// If shown in a button the titles text will become visible
     func dismiss() {
         if let superView = superview {
             superView.isUserInteractionEnabled = userInteractionEnabledAtReception
             let button = superView as? UIButton
-            button?.restore(titleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
+            button?.restore(withTitleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
         }
         else if let superView = imageView?.superview {
             superView.isUserInteractionEnabled = userInteractionEnabledAtReception
             let button = superView as? UIButton
-            button?.restore(titleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
+            button?.restore(withTitleColors: controlTitleColors, attributedStrings: controlTitleAttributes)
         }
         
         stopAnimating()
@@ -264,10 +260,10 @@ private extension UIButton {
     
     /// Function to set the buttons title colors to specific button states passed in the array parameter
     ///
-    /// - parameter colors: An array of ControlTitleColor each containing a UIControlState and a UIColor.
+    /// - parameter titleColors: An array of ControlTitleColor each containing a UIControlState and a UIColor.
     /// - parameter attributedStrings: An array of ControlTitleAttributes each containing a UIControlState and a NSAttributedString.
-    func restore(titleColors colors: [ControlTitleColor]?, attributedStrings: [ControlTitleAttributes]?) {
-        colors?.forEach {
+    func restore(withTitleColors titleColors: [ControlTitleColor]?, attributedStrings: [ControlTitleAttributes]?) {
+        titleColors?.forEach {
             guard titleColor(for: $0.0) == .clear else { return }
             setTitleColor($0.1, for: $0.0)
         }
@@ -311,11 +307,11 @@ extension SpinnerView {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance show method")
+    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance `show` method")
     public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color: UIColor? = nil, disablesUserInteraction: Bool = true, dimBackground: Bool = false) -> SpinnerView {
         let center = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
         
-        let spinnerView = SpinnerView(style: style)
+        let spinnerView = SpinnerView(style: style, color: color)
         spinnerView.userInteractionEnabledAtReception = view.isUserInteractionEnabled
         
         //In case the previous spinner wasn't dismissed
@@ -365,7 +361,7 @@ extension SpinnerView {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance show method")
+    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance `show` method")
     public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> SpinnerView {
         
         let spinnerView = showSpinner(inView: button, style: style, color: color)
@@ -393,7 +389,7 @@ extension SpinnerView {
      
      - Returns: A reference to the `Spinner` that was created, so that it can be dismissed as needed.
      */
-    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance showCustom method")
+    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance `showCustom` method")
     public static func showCustomSpinner(inView view: UIView, dimBackground: Bool = false) -> SpinnerView {
         if let image = SpinnerView.animationImage {
             
@@ -441,7 +437,7 @@ extension SpinnerView {
      
      - Returns: A reference to the ActivityIndicator that was created, so that it can be dismissed as needed
      */
-    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance showCustom method")
+    @available(*, deprecated, message: "This method will be removed in a future release, please use the new instance `showCustom` method")
     public static func showCustomSpinner(inButton button: UIButton, disablesUserInteraction:Bool = true) -> SpinnerView {
         let spinnerView = showCustomSpinner(inView: button)
         button.isUserInteractionEnabled = !disablesUserInteraction
