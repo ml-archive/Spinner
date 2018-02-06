@@ -64,11 +64,8 @@ public class SpinnerView: UIActivityIndicatorView {
     deinit {
         print("Deinit SpinnerView")
     }
-}
-
-// MARK: - Show
-
-public extension SpinnerView {
+    
+    // MARK: - Show
     
     /// To display the indicator centered in a view.
     ///
@@ -130,12 +127,9 @@ public extension SpinnerView {
         guard disablesUserInteraction else { return }
         button.isUserInteractionEnabled = false
     }
-}
 
-// MARK: - Show Custom
+    // MARK: - Show Custom
 
-public extension SpinnerView {
-    
     //// To display the indicator centered in a view.
     ///
     /// - Note: If the `animationImage` has not been created via `setCustomImages(_:duration:)`, it will default to the normal `UIActivityIndicatorView` and will not use a custom `UIImageView`.
@@ -185,12 +179,9 @@ public extension SpinnerView {
         controlTitleAttributes = button.allTitleAttributes
         button.removeAllAttributedStrings()
     }
-}
 
-// MARK: - Dismiss
+    // MARK: - Dismiss
 
-public extension SpinnerView {
-    
     /// To dismiss the currently displayed indicator. The views interaction will then be enabled depending on the parameter boolean
     /// If shown in a button the titles text will become visible
     func dismiss() {
@@ -207,7 +198,8 @@ public extension SpinnerView {
         
         stopAnimating()
         removeFromSuperview()
-        imageView?.dismiss()
+        imageView?.stopAnimating()
+        imageView?.removeFromSuperview()
         dimView?.removeFromSuperview()
     }
 }
@@ -222,23 +214,11 @@ public extension SpinnerView  {
     ///
     /// - parameter images: An array containing the UIImages to use for the animation.
     /// - parameter duration: The animation duration.
-    public static func set(withCustomImages images: [UIImage], duration: TimeInterval) {
+    static func set(withCustomImages images: [UIImage], duration: TimeInterval) {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: images[0].size.width, height: images[0].size.height))
         image.animationImages = images
         image.animationDuration = duration
         animationImage = image
-    }
-}
-
-// MARK: - UI Image View Extension
-
-// Extension to allow UIImageView to be dismissed
-extension UIImageView {
-    
-    // Called when the activity indicator should be removed.
-    public func dismiss() {
-        stopAnimating()
-        removeFromSuperview()
     }
 }
 
@@ -341,7 +321,8 @@ extension SpinnerView {
         //In case the previous spinner wasn't dismissed
         if let oldSpinner = view.subviews.filter({ $0 is UIImageView }).first as? UIImageView {
             spinnerView.userInteractionEnabledAtReception = true //We will need to assume userinteraction should be restored as we do not have access to the original SpinnerView
-            oldSpinner.dismiss()
+            oldSpinner.stopAnimating()
+            oldSpinner.removeFromSuperview()
         }
         if let oldSpinner = view.subviews.filter({ $0 is SpinnerView }).first as? SpinnerView {
             spinnerView.userInteractionEnabledAtReception = true //We will need to assume userinteraction should be restored as we do not have access to the original SpinnerView
@@ -418,7 +399,8 @@ extension SpinnerView {
             
             //In case the previous spinner wasn't dismissed
             if let oldSpinner = view.subviews.filter({ $0 is UIImageView }).first as? UIImageView {
-                oldSpinner.dismiss()
+                oldSpinner.stopAnimating()
+                oldSpinner.removeFromSuperview()
             }
             
             if let oldSpinner = view.subviews.filter({ $0 is SpinnerView }).first as? SpinnerView {
