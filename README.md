@@ -37,11 +37,11 @@ github "nodes-ios/Spinner" ~> 2.0
 
 ### Global Settings
 
-SpinnerView has global properties that can be set for convinence to ensure that all spinners look the same. Set these up at app launch if needed.
+SpinnerView has global properties that can be set for convinence to ensure that all spinners look the same. Call these at app launch if needed.
 
 ```swift
 SpinnerView.spinnerColor = .red
-SpinnerView.indicatorStyle = .white
+SpinnerView.style = .white
 SpinnerView.dimViewBackgroundColor = .black
 ```
 
@@ -82,14 +82,14 @@ spinner.dismiss()
 ### Custom spinner
 If you would rather use something more custom than the UIActivityIndicator, you can set an array of images to the Spinner with a duration time it takes to animate through them and display it in a view.
 
-First setup SpinnerView with your array of images e.g AppDelegate
+First setup SpinnerView with your array of images e.g. AppDelegate
 
 ```swift
 let imagesArray = [...]
 SpinnerView.set(withCustomImages: imagesArray, duration: 2)
 ```
 
-and than simply call the custom show methods
+and than simply call the custom show method
 
 ```swif
 spinner.showCustom(in: view, disablesUserInteraction: false, dimBackground: true)
