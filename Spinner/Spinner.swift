@@ -8,8 +8,8 @@
 
 import UIKit
 
-public typealias ControlTitleColor = (UIControlState, UIColor?)
-public typealias ControlTitleAttributes = (UIControlState, NSAttributedString?)
+public typealias ControlTitleColor = (UIControl.State, UIColor?)
+public typealias ControlTitleAttributes = (UIControl.State, NSAttributedString?)
 
 /**
 	Protocol for any view that can be used as a Spinner. Currently only has one dismiss
@@ -46,11 +46,11 @@ public class SpinnerView: NSObject, Spinner {
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
     
-    public static func showSpinner(inView view: UIView, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction: Bool = true, dimBackground: Bool = false) -> SpinnerView {
+    public static func showSpinner(inView view: UIView, style: UIActivityIndicatorView.Style = .white, color:UIColor? = nil, disablesUserInteraction: Bool = true, dimBackground: Bool = false) -> SpinnerView {
         let center      = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/2)
         
         
-        let activityIndicator     = UIActivityIndicatorView(activityIndicatorStyle: style)
+        let activityIndicator     = UIActivityIndicatorView(style: style)
         
         let spinnerView = SpinnerView()
         spinnerView.userInteractionEnabledAtReception = view.isUserInteractionEnabled
@@ -99,7 +99,7 @@ public class SpinnerView: NSObject, Spinner {
      
      - Returns: A reference to the Spinner that was created, so that it can be dismissed as needed.
      */
-    public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorViewStyle = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> SpinnerView {
+    public static func showSpinner(inButton button: UIButton, style: UIActivityIndicatorView.Style = .white, color:UIColor? = nil, disablesUserInteraction:Bool = true) -> SpinnerView {
         
         let spinnerView = showSpinner(inView: button, style: style, color: color)
         spinnerView.controlTitleColors = button.allTitleColors()
@@ -257,7 +257,7 @@ fileprivate extension UIButton {
     // Extension to return an array of every color for every button state
     fileprivate func allTitleColors() -> [ControlTitleColor] {
         var colors: [ControlTitleColor] = [
-            (UIControlState(), titleColor(for: UIControlState())),
+            (UIControl.State(), titleColor(for: UIControl.State())),
             (.highlighted, titleColor(for: .highlighted)),
             (.disabled, titleColor(for: .disabled)),
             (.selected, titleColor(for: .selected)),
@@ -274,7 +274,7 @@ fileprivate extension UIButton {
     
     fileprivate func allTitleAttributes() -> [ControlTitleAttributes] {
         var attributes: [ControlTitleAttributes] = [
-            (UIControlState(), attributedTitle(for: UIControlState())),
+            (UIControl.State(), attributedTitle(for: UIControl.State())),
             (.highlighted, attributedTitle(for: .highlighted)),
             (.disabled, attributedTitle(for: .disabled)),
             (.selected, attributedTitle(for: .selected)),
