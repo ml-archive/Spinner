@@ -35,25 +35,25 @@ class SpinnerTests: XCTestCase {
     }
     
     func testDismissSpinnerInButton() {
-        button.setTitleColor(UIColor.red, for: UIControlState.normal)
+        button.setTitleColor(UIColor.red, for: UIControl.State.normal)
         let spinner = SpinnerView.showSpinner(inButton: button)
         spinner.dismiss()
         let hasSpinner = button.subviews.contains {$0 is Spinner}
         XCTAssertFalse(hasSpinner)
         XCTAssertTrue(button.isUserInteractionEnabled)
-        let titleColorRed = button.titleColor(for: UIControlState.normal) == UIColor.red
+        let titleColorRed = button.titleColor(for: UIControl.State.normal) == UIColor.red
         XCTAssertTrue(titleColorRed)
     }
     
     func testDismissSpinnerInButtonWithChangedColor() {
-        button.setTitleColor(UIColor.red, for: UIControlState.normal)
+        button.setTitleColor(UIColor.red, for: UIControl.State.normal)
         let spinner = SpinnerView.showSpinner(inButton: button)
-        button.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        button.setTitleColor(UIColor.blue, for: UIControl.State.normal)
         spinner.dismiss()
         let hasSpinner = button.subviews.contains {$0 is Spinner}
         XCTAssertFalse(hasSpinner)
         XCTAssertTrue(button.isUserInteractionEnabled)
-        let titleColorBlue = button.titleColor(for: UIControlState.normal) == UIColor.blue
+        let titleColorBlue = button.titleColor(for: UIControl.State.normal) == UIColor.blue
         XCTAssertTrue(titleColorBlue)
     }
     
@@ -153,7 +153,7 @@ class SpinnerTests: XCTestCase {
     func testShowSpinnerInButtonWithAttributedSting() {
         button.isUserInteractionEnabled = true
         
-        let attributedString = NSAttributedString(string: "title", attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 19)])
+        let attributedString = NSAttributedString(string: "title", attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 19)])
         button.setAttributedTitle(attributedString, for: .normal)
         
         let spinnerView = SpinnerView.showSpinner(inButton: button)
