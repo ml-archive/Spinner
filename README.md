@@ -22,6 +22,11 @@ A helpful loading spinner tool allowing you to present a UIActivityIndicator vie
 github "nodes-ios/Spinner" ~> 2.0
 ~~~
 
+### Cocoapods
+~~~
+pod 'Spinner', '~> 1.2.3'
+~~~
+
 > Last versions compatible with lower Swift versions:  
 >
 > **Swift 3**  
