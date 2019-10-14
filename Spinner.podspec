@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
     spec.summary                = 'Present loading indicators anywhere quickly and easily'
 
     spec.homepage               = 'https://github.com/nodes-ios/Spinner'
-    spec.author                 = { 'Mostafa Amer' => 'mostafamamer@gmail.com' }
+   spec.author             = { "Nodes Agency - iOS" => "ios@nodes.dk" }
     spec.source                 = { :git => 'https://github.com/nodes-ios/Spinner.git', :tag => spec.version.to_s }
     spec.license                = 'MIT'
 
