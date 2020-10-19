@@ -24,7 +24,7 @@ github "nodes-ios/Spinner" ~> 2.0
 
 ### Cocoapods
 ~~~
-pod 'Spinner', '~> 1.2.3'
+pod 'NSpinner', '~> 1.2.4'
 ~~~
 
 > Last versions compatible with lower Swift versions:  
