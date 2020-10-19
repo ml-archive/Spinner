@@ -13,4 +13,7 @@ Pod::Spec.new do |spec|
 
     spec.source_files           = 'Spinner/Spinner.swift'
 
+    spec.swift_version = '5'
+    spec.pod_target_xcconfig = { 'SWIFT_VERSION' => '5' }
+
 end
